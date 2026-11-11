@@ -1,0 +1,1392 @@
+[
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Какие есть методы Promise: all, any, allSettled, race? Чем они отличаются?",
+    "topic": "promise-combinators",
+    "lesson": "async",
+    "question": "chat-1-1",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Что такое Web Workers и Service Workers? Для чего они нужны?",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "chat-1-2",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Что такое BroadcastChannel и как его использовать?",
+    "topic": "broadcast",
+    "lesson": "communication",
+    "question": "chat-1-3",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Как синхронизировать данные между несколькими вкладками или iframe?",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "chat-1-4",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Как дедуплицировать события между вкладками, например при получении уведомления?",
+    "topic": "dedup",
+    "lesson": "communication",
+    "question": "chat-1-5",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Чем отличаются Map и Set? Есть ли у Set индексы?",
+    "topic": "map-set",
+    "lesson": "javascript",
+    "question": "chat-1-6",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Для чего нужны WeakMap и WeakSet? Как они связаны со сборкой мусора?",
+    "topic": "weak",
+    "lesson": "javascript",
+    "question": "chat-1-7",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Как работает сборщик мусора в JavaScript?",
+    "topic": "gc",
+    "lesson": "javascript",
+    "question": "chat-1-8",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · JavaScript и браузерные API",
+    "title": "Что такое Proxy? Как работает проксирование объектов?",
+    "topic": "proxy",
+    "lesson": "javascript",
+    "question": "chat-1-9",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "С какими версиями React ты работала?",
+    "topic": "react-versions",
+    "lesson": "react-app",
+    "question": "chat-2-1",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Был ли опыт перехода между версиями?",
+    "topic": "react-versions",
+    "lesson": "react-app",
+    "question": "chat-2-2",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Какие новые возможности React знаешь?",
+    "topic": "react-versions",
+    "lesson": "react-app",
+    "question": "chat-2-3",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Какие хуки знаешь и для чего они нужны?",
+    "topic": "hooks-list",
+    "lesson": "react-effects",
+    "question": "chat-2-4",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Как работают контексты? Когда стоит разделять данные на несколько контекстов?",
+    "topic": "context",
+    "lesson": "react-state",
+    "question": "chat-2-5",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Для чего использовать useEffect, кроме выполнения запросов?",
+    "topic": "effects-purpose",
+    "lesson": "react-effects",
+    "question": "chat-2-6",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Как работает массив зависимостей у useEffect и useLayoutEffect?",
+    "topic": "effect-deps",
+    "lesson": "react-effects",
+    "question": "chat-2-7",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Что произойдёт, если не указать массив зависимостей?",
+    "topic": "effect-deps",
+    "lesson": "react-effects",
+    "question": "chat-2-8",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Что означает пустой массив зависимостей?",
+    "topic": "effect-deps",
+    "lesson": "react-effects",
+    "question": "chat-2-9",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Как React сравнивает зависимости?",
+    "topic": "effect-deps",
+    "lesson": "react-effects",
+    "question": "chat-2-10",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Сработает ли useLayoutEffect, если изменить свойство объекта в зависимостях, сохранив ссылку на объект?",
+    "topic": "effect-deps",
+    "lesson": "react-effects",
+    "question": "chat-2-11",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Какие способы оптимизации React-приложений знаешь?",
+    "topic": "react-performance",
+    "lesson": "performance",
+    "question": "chat-2-12",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Как выявлять проблемы производительности?",
+    "topic": "react-performance",
+    "lesson": "performance",
+    "question": "chat-2-13",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · React",
+    "title": "Как организация состояния влияет на производительность?",
+    "topic": "state-design",
+    "lesson": "react-state",
+    "question": "chat-2-14",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Для чего нужен тип never?",
+    "topic": "never",
+    "lesson": "typescript",
+    "question": "chat-3-1",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Какие подводные камни есть у приведения типов — cast / type assertion?",
+    "topic": "assertions",
+    "lesson": "typescript",
+    "question": "chat-3-2",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Какие Utility Types знаешь и для чего они нужны?",
+    "topic": "utilities",
+    "lesson": "typescript",
+    "question": "chat-3-3",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Чем отличаются Omit и Exclude?",
+    "topic": "omit-exclude",
+    "lesson": "typescript",
+    "question": "chat-3-4",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Как Exclude работает с union-типами?",
+    "topic": "omit-exclude",
+    "lesson": "typescript",
+    "question": "chat-3-5",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Что такое Type Guard?",
+    "topic": "narrowing",
+    "lesson": "typescript",
+    "question": "chat-3-6",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Какие бывают способы сужения типов?",
+    "topic": "narrowing",
+    "lesson": "typescript",
+    "question": "chat-3-7",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Какие встроенные проверки TypeScript использует для сужения типов?",
+    "topic": "narrowing",
+    "lesson": "typescript",
+    "question": "chat-3-8",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · TypeScript",
+    "title": "Для чего нужен satisfies и чем он отличается от : Type и as Type?",
+    "topic": "assertions",
+    "lesson": "typescript",
+    "question": "chat-3-9",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · Принципы и паттерны",
+    "title": "Какие принципы разработки знаешь?",
+    "topic": "kiss-dry-yagni",
+    "lesson": "architecture",
+    "question": "chat-4-1",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · Принципы и паттерны",
+    "title": "Что означает каждая буква в SOLID?",
+    "topic": "solid",
+    "lesson": "architecture",
+    "question": "chat-4-2",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · Принципы и паттерны",
+    "title": "Что означают KISS и DRY?",
+    "topic": "kiss-dry-yagni",
+    "lesson": "architecture",
+    "question": "chat-4-3",
+    "status": "included"
+  },
+  {
+    "origin": "Чат · Принципы и паттерны",
+    "title": "Какие паттерны проектирования знаешь? Где их применяла?",
+    "topic": "design-patterns",
+    "lesson": "architecture",
+    "question": "chat-4-4",
+    "status": "included"
+  },
+  {
+    "origin": "Notion",
+    "title": "Why Redux?",
+    "status": "included",
+    "topic": "flux-redux",
+    "lesson": "react-state",
+    "question": "flux-redux-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "FLUX",
+    "status": "included",
+    "topic": "flux-redux",
+    "lesson": "react-state",
+    "question": "flux-redux-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "SEO quick recap",
+    "status": "included",
+    "topic": "seo",
+    "lesson": "rendering",
+    "question": "seo-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "SSL сертификат",
+    "status": "included",
+    "topic": "tls",
+    "lesson": "security",
+    "question": "tls-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что происходит перед рендерингом?",
+    "status": "included",
+    "topic": "navigation",
+    "lesson": "url",
+    "question": "navigation-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Фазы рендеринга страницы",
+    "status": "included",
+    "topic": "pipeline",
+    "lesson": "url",
+    "question": "pipeline-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что входит в запрос к серверу? REST",
+    "status": "included",
+    "topic": "rest",
+    "lesson": "http",
+    "question": "rest-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "REST (Representational State Transfer)",
+    "status": "included",
+    "topic": "rest",
+    "lesson": "http",
+    "question": "rest-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Основные принципы",
+    "status": "included",
+    "topic": "rest",
+    "lesson": "http",
+    "question": "rest-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Частые вопросы на собеседовании по теме REST",
+    "status": "included",
+    "topic": "rest",
+    "lesson": "http",
+    "question": "rest-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Head requests",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что может быть в заголовках HEAD-ответа",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Информация о содержимом (Representation headers)",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Кэширование",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Информация о сервере",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Куки и сессии",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Безопасность",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "CORS-заголовки (если это API)",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Диапазоны (для докачки файлов)",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Редиректы",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "304",
+    "status": "included",
+    "topic": "caching",
+    "lesson": "http",
+    "question": "caching-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Options request",
+    "status": "included",
+    "topic": "cors",
+    "lesson": "security",
+    "question": "cors-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "CORS",
+    "status": "included",
+    "topic": "cors",
+    "lesson": "security",
+    "question": "cors-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "HTTP Requests Answers",
+    "status": "included",
+    "topic": "statuses",
+    "lesson": "http",
+    "question": "statuses-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "OpenTelemetry, Sentry, Prometheus, and Grafana",
+    "status": "included",
+    "topic": "observability",
+    "lesson": "performance",
+    "question": "observability-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Vulnerabilities",
+    "status": "included",
+    "topic": "vulnerabilities",
+    "lesson": "security",
+    "question": "vulnerabilities-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Typescript",
+    "status": "included",
+    "topic": "ts-basics",
+    "lesson": "typescript",
+    "question": "ts-basics-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "React",
+    "status": "included",
+    "topic": "render-commit",
+    "lesson": "react-render",
+    "question": "render-commit-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Архитектура",
+    "status": "included",
+    "topic": "architecture-methods",
+    "lesson": "architecture",
+    "question": "architecture-methods-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "What is gRPC?",
+    "status": "included",
+    "topic": "api-styles",
+    "lesson": "http",
+    "question": "api-styles-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое HTTP запрос? Чем от отличается от HTTPS?",
+    "status": "included",
+    "topic": "message",
+    "lesson": "http",
+    "question": "message-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Как создается HTTP-запрос?",
+    "status": "included",
+    "topic": "navigation",
+    "lesson": "url",
+    "question": "navigation-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое HTTP-запрос? Как он проходит путь от клиента до сервера?",
+    "status": "included",
+    "topic": "navigation",
+    "lesson": "url",
+    "question": "navigation-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "CDN and why we need it",
+    "status": "included",
+    "topic": "cdn",
+    "lesson": "url",
+    "question": "cdn-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Cookie. Какие аттрибуты?",
+    "status": "included",
+    "topic": "cookies",
+    "lesson": "security",
+    "question": "cookies-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Array Methods",
+    "status": "included",
+    "topic": "arrays",
+    "lesson": "javascript",
+    "question": "arrays-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Set, Map, WeakSet, WeakMap",
+    "status": "included",
+    "topic": "map-set",
+    "lesson": "javascript",
+    "question": "map-set-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "React Fiber",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Service Worker vs Web worker",
+    "status": "included",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "workers-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Service Worker",
+    "status": "included",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "workers-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Web Worker",
+    "status": "included",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "workers-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Comparison",
+    "status": "included",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "workers-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Concurrent rendering",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Elasticsearch",
+    "status": "excluded",
+    "reason": "Исключено пользователем: базы данных и инструменты"
+  },
+  {
+    "origin": "Notion",
+    "title": "Inverted vs Forward index",
+    "status": "excluded",
+    "reason": "Исключено пользователем: базы данных и инструменты"
+  },
+  {
+    "origin": "Notion",
+    "title": "Cookies",
+    "status": "included",
+    "topic": "cookies",
+    "lesson": "security",
+    "question": "cookies-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "useEffect vs useLayoutEffect",
+    "status": "included",
+    "topic": "effect-timing",
+    "lesson": "react-effects",
+    "question": "effect-timing-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "React Suspense",
+    "status": "included",
+    "topic": "suspense-lazy",
+    "lesson": "react-app",
+    "question": "suspense-lazy-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Lazy Loading",
+    "status": "included",
+    "topic": "suspense-lazy",
+    "lesson": "react-app",
+    "question": "suspense-lazy-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "React hydration",
+    "status": "included",
+    "topic": "hydration",
+    "lesson": "rendering",
+    "question": "hydration-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Redux / RTK Query / Tanstack Query / SWR",
+    "status": "included",
+    "topic": "query-libs",
+    "lesson": "react-state",
+    "question": "query-libs-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "CSS Specificity",
+    "status": "included",
+    "topic": "specificity",
+    "lesson": "html-css",
+    "question": "specificity-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "HOC in React",
+    "status": "included",
+    "topic": "hoc-router",
+    "lesson": "react-app",
+    "question": "hoc-router-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Dashboard",
+    "status": "included",
+    "topic": "suspense-lazy",
+    "lesson": "react-app",
+    "question": "suspense-lazy-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Object cloning/copying in JS",
+    "status": "included",
+    "topic": "cloning",
+    "lesson": "javascript",
+    "question": "cloning-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Bundle Optimizations",
+    "status": "included",
+    "topic": "bundle",
+    "lesson": "performance",
+    "question": "bundle-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "The biggest wins are usually:",
+    "status": "included",
+    "topic": "bundle",
+    "lesson": "performance",
+    "question": "bundle-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Rollup/ Rolldown / ESbuild /  Webpack / Rspack",
+    "status": "included",
+    "topic": "build-tools",
+    "lesson": "performance",
+    "question": "build-tools-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Compiler/Transpiler ≠ Bundler:",
+    "status": "included",
+    "topic": "build-tools",
+    "lesson": "performance",
+    "question": "build-tools-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "i18n VS l10n",
+    "status": "included",
+    "topic": "internationalization",
+    "lesson": "html-css",
+    "question": "internationalization-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "{translate(\"welcome_back\", { name })}",
+    "status": "included",
+    "topic": "internationalization",
+    "lesson": "html-css",
+    "question": "internationalization-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "IndexedDB",
+    "status": "included",
+    "topic": "web-storage",
+    "lesson": "security",
+    "question": "web-storage-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Controlled/Uncontrolled components",
+    "status": "included",
+    "topic": "forms",
+    "lesson": "react-app",
+    "question": "forms-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "React Keys",
+    "status": "included",
+    "topic": "keys-vdom",
+    "lesson": "react-render",
+    "question": "keys-vdom-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Virtual DOM",
+    "status": "included",
+    "topic": "keys-vdom",
+    "lesson": "react-render",
+    "question": "keys-vdom-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Fiber 2.0",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "The Problem It Solved: The Old \"Stack\" Reconciler",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Core Features of React Fiber",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "How Fiber Works Under the Hood",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Why should you care?",
+    "status": "included",
+    "topic": "fiber",
+    "lesson": "react-render",
+    "question": "fiber-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "SSE",
+    "status": "included",
+    "topic": "realtime",
+    "lesson": "communication",
+    "question": "realtime-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "WebSocket",
+    "status": "included",
+    "topic": "realtime",
+    "lesson": "communication",
+    "question": "realtime-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Long Polling",
+    "status": "included",
+    "topic": "realtime",
+    "lesson": "communication",
+    "question": "realtime-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Как использовать Fetch API и Streams для обработки больших объемов данных?",
+    "status": "included",
+    "topic": "fetch-streams",
+    "lesson": "async",
+    "question": "fetch-streams-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое React Router?",
+    "status": "included",
+    "topic": "hoc-router",
+    "lesson": "react-app",
+    "question": "hoc-router-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое Cookie и для чего они используются?",
+    "status": "included",
+    "topic": "cookies",
+    "lesson": "security",
+    "question": "cookies-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое SPA?",
+    "status": "included",
+    "topic": "hoc-router",
+    "lesson": "react-app",
+    "question": "hoc-router-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "В чем разница передачи данных через query-параметры и body запроса?",
+    "status": "included",
+    "topic": "message",
+    "lesson": "http",
+    "question": "message-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Реляционные базы данных",
+    "status": "excluded",
+    "reason": "Исключено пользователем: базы данных и инструменты"
+  },
+  {
+    "origin": "Notion",
+    "title": "Database joins ???",
+    "status": "excluded",
+    "reason": "Исключено пользователем: базы данных и инструменты"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое setTimeout и setInterval?",
+    "status": "included",
+    "topic": "timers",
+    "lesson": "async",
+    "question": "timers-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "В чем разница между интерфейсом (interface) и типом (type) в TypeScript?",
+    "status": "included",
+    "topic": "ts-basics",
+    "lesson": "typescript",
+    "question": "ts-basics-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "В чем отличие между microtask queue и task queue?",
+    "status": "included",
+    "topic": "event-loop",
+    "lesson": "async",
+    "question": "event-loop-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое замыкания в JavaScript и для чего они нужны",
+    "status": "included",
+    "topic": "closures",
+    "lesson": "javascript",
+    "question": "closures-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Что такое промисы в JavaScript и как они работают",
+    "status": "included",
+    "topic": "promise-basics",
+    "lesson": "async",
+    "question": "promise-basics-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Ассоциации из жизни",
+    "status": "included",
+    "topic": "promise-combinators",
+    "lesson": "async",
+    "question": "promise-combinators-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Как различить похожие пары",
+    "status": "included",
+    "topic": "promise-combinators",
+    "lesson": "async",
+    "question": "promise-combinators-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Где это встречается на практике",
+    "status": "included",
+    "topic": "promise-combinators",
+    "lesson": "async",
+    "question": "promise-combinators-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Жизненный цикл реакт компонентов",
+    "status": "included",
+    "topic": "render-commit",
+    "lesson": "react-render",
+    "question": "render-commit-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "useEffect / useLayoutEffect",
+    "status": "included",
+    "topic": "effect-timing",
+    "lesson": "react-effects",
+    "question": "effect-timing-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Опиши процесс от ввода адреса сайта в браузере до отображения страницы",
+    "status": "included",
+    "topic": "navigation",
+    "lesson": "url",
+    "question": "navigation-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Способы хранения данных в браузере:",
+    "status": "included",
+    "topic": "web-storage",
+    "lesson": "security",
+    "question": "web-storage-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Load JS scripts: async / defer",
+    "status": "included",
+    "topic": "scripts",
+    "lesson": "html-css",
+    "question": "scripts-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "REST:rest",
+    "status": "included",
+    "topic": "rest",
+    "lesson": "http",
+    "question": "rest-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Различия между HTTP/1.1 и HTTP/2:",
+    "status": "included",
+    "topic": "http-versions",
+    "lesson": "http",
+    "question": "http-versions-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "🍪 Cookies",
+    "status": "included",
+    "topic": "cookies",
+    "lesson": "security",
+    "question": "cookies-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Common uses",
+    "status": "included",
+    "topic": "cookies",
+    "lesson": "security",
+    "question": "cookies-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Images optimization",
+    "status": "included",
+    "topic": "images",
+    "lesson": "html-css",
+    "question": "images-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "SVG. Best (and worst) parts",
+    "status": "included",
+    "topic": "svg",
+    "lesson": "html-css",
+    "question": "svg-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "GraphQL",
+    "status": "included",
+    "topic": "api-styles",
+    "lesson": "http",
+    "question": "api-styles-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "gRPC",
+    "status": "included",
+    "topic": "api-styles",
+    "lesson": "http",
+    "question": "api-styles-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Cross-context communication in the browser",
+    "status": "included",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "cross-context-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "One question sorts them: who is talking to whom?",
+    "status": "included",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "cross-context-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "What they have in common",
+    "status": "included",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "cross-context-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Each one in a line or two",
+    "status": "included",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "cross-context-main"
+  },
+  {
+    "origin": "Notion",
+    "title": "Picking one",
+    "status": "included",
+    "topic": "cross-context",
+    "lesson": "communication",
+    "question": "cross-context-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Idempotency",
+    "status": "included",
+    "topic": "methods",
+    "lesson": "http",
+    "question": "methods-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "offset based or cursor based pagination",
+    "status": "included",
+    "topic": "pagination",
+    "lesson": "http",
+    "question": "pagination-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "mobx",
+    "status": "included",
+    "topic": "query-libs",
+    "lesson": "react-state",
+    "question": "query-libs-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Isomorphic web apps",
+    "status": "included",
+    "topic": "hydration",
+    "lesson": "rendering",
+    "question": "hydration-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "useEffect cleanup function",
+    "status": "included",
+    "topic": "effects-purpose",
+    "lesson": "react-effects",
+    "question": "effects-purpose-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "call, apply, bind",
+    "status": "included",
+    "topic": "closures",
+    "lesson": "javascript",
+    "question": "closures-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "async/await, promises in React code",
+    "status": "included",
+    "topic": "promise-basics",
+    "lesson": "async",
+    "question": "promise-basics-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Context, who rerenders and when?",
+    "status": "included",
+    "topic": "context",
+    "lesson": "react-state",
+    "question": "context-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Core web vitals",
+    "status": "included",
+    "topic": "vitals",
+    "lesson": "performance",
+    "question": "vitals-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "SOLID principles and examples from FE",
+    "status": "included",
+    "topic": "solid",
+    "lesson": "architecture",
+    "question": "solid-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "patterns and examples from React",
+    "status": "included",
+    "topic": "design-patterns",
+    "lesson": "architecture",
+    "question": "design-patterns-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "GENERICS",
+    "status": "included",
+    "topic": "generics-variance",
+    "lesson": "typescript",
+    "question": "generics-variance-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "React 19 hooks",
+    "status": "included",
+    "topic": "hooks-list",
+    "lesson": "react-effects",
+    "question": "hooks-list-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Cache API",
+    "status": "included",
+    "topic": "web-storage",
+    "lesson": "security",
+    "question": "web-storage-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Reflow, repaint, composite",
+    "status": "included",
+    "topic": "pipeline",
+    "lesson": "url",
+    "question": "pipeline-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Как реализована авторизация?",
+    "status": "included",
+    "topic": "auth",
+    "lesson": "security",
+    "question": "auth-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "What is NX + Turbopack",
+    "status": "included",
+    "topic": "build-tools",
+    "lesson": "performance",
+    "question": "build-tools-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "extensions: ts, js, mjs",
+    "status": "included",
+    "topic": "build-tools",
+    "lesson": "performance",
+    "question": "build-tools-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "saas, less, stylus",
+    "status": "included",
+    "topic": "styling",
+    "lesson": "html-css",
+    "question": "styling-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Carbon UI lib",
+    "status": "included",
+    "topic": "styling",
+    "lesson": "html-css",
+    "question": "styling-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Module Federation",
+    "status": "included",
+    "topic": "module-federation",
+    "lesson": "architecture",
+    "question": "module-federation-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Understanding variance in TS",
+    "status": "included",
+    "topic": "generics-variance",
+    "lesson": "typescript",
+    "question": "generics-variance-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "MVC",
+    "status": "included",
+    "topic": "architecture-boundaries",
+    "lesson": "architecture",
+    "question": "architecture-boundaries-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "RADIO Framework",
+    "status": "included",
+    "topic": "architecture-boundaries",
+    "lesson": "architecture",
+    "question": "architecture-boundaries-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "CSS in JS and compare other css approaches",
+    "status": "included",
+    "topic": "styling",
+    "lesson": "html-css",
+    "question": "styling-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Handlebars templates VS component-based templating systems",
+    "status": "included",
+    "topic": "hoc-router",
+    "lesson": "react-app",
+    "question": "hoc-router-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Ad hoc тестирование",
+    "status": "included",
+    "topic": "react-performance",
+    "lesson": "performance",
+    "question": "react-performance-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "i18n",
+    "status": "included",
+    "topic": "internationalization",
+    "lesson": "html-css",
+    "question": "internationalization-main"
+  },
+  {
+    "origin": "Notion · учебный список",
+    "title": "Compiler / Transpiler",
+    "status": "included",
+    "topic": "build-tools",
+    "lesson": "performance",
+    "question": "build-tools-main"
+  },
+  {
+    "origin": "Notion · исключения",
+    "title": "Личные TODO и вакансии",
+    "status": "excluded",
+    "reason": "Исключённый раздел / вне согласованного набора уроков"
+  },
+  {
+    "origin": "Notion · исключения",
+    "title": "Реляционные БД, нормализация, joins и индексы БД",
+    "status": "excluded",
+    "reason": "Исключённый раздел / вне согласованного набора уроков"
+  },
+  {
+    "origin": "Notion · исключения",
+    "title": "Redis, Kafka, Elasticsearch, ClickHouse",
+    "status": "excluded",
+    "reason": "Исключённый раздел / вне согласованного набора уроков"
+  },
+  {
+    "origin": "Notion · исключения",
+    "title": "Backend-фреймворки, ORM и прочие инструменты исключённого раздела",
+    "status": "excluded",
+    "reason": "Исключённый раздел / вне согласованного набора уроков"
+  },
+  {
+    "origin": "Notion · исключения",
+    "title": "Codegen / Orval, CASL как отдельная библиотека, nuqs / qs, Nivo / amCharts, CodeGraph, npm-пакеты, ERD / UML / Excalidraw",
+    "status": "excluded",
+    "reason": "Исключённый раздел / вне согласованного набора уроков"
+  }
+]

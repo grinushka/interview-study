@@ -1,0 +1,430 @@
+{
+  "source": "https://app.notion.com/p/questions-37395f65d61280cf83b9ec0b1f33492d",
+  "retrieved": "2026-11-10",
+  "headings": [
+    {
+      "title": "Why Redux?",
+      "level": 2
+    },
+    {
+      "title": "FLUX",
+      "level": 2
+    },
+    {
+      "title": "SEO quick recap",
+      "level": 2
+    },
+    {
+      "title": "SSL сертификат",
+      "level": 2
+    },
+    {
+      "title": "Что происходит перед рендерингом?",
+      "level": 2
+    },
+    {
+      "title": "Фазы рендеринга страницы",
+      "level": 2
+    },
+    {
+      "title": "Что входит в запрос к серверу? REST",
+      "level": 2
+    },
+    {
+      "title": "REST (Representational State Transfer)",
+      "level": 2
+    },
+    {
+      "title": "Основные принципы",
+      "level": 3
+    },
+    {
+      "title": "Частые вопросы на собеседовании по теме REST",
+      "level": 3
+    },
+    {
+      "title": "Head requests",
+      "level": 2
+    },
+    {
+      "title": "Что может быть в заголовках HEAD-ответа",
+      "level": 2
+    },
+    {
+      "title": "Информация о содержимом (Representation headers)",
+      "level": 3
+    },
+    {
+      "title": "Кэширование",
+      "level": 3
+    },
+    {
+      "title": "Информация о сервере",
+      "level": 3
+    },
+    {
+      "title": "Куки и сессии",
+      "level": 3
+    },
+    {
+      "title": "Безопасность",
+      "level": 3
+    },
+    {
+      "title": "CORS-заголовки (если это API)",
+      "level": 3
+    },
+    {
+      "title": "Диапазоны (для докачки файлов)",
+      "level": 3
+    },
+    {
+      "title": "Редиректы",
+      "level": 3
+    },
+    {
+      "title": "304",
+      "level": 2
+    },
+    {
+      "title": "Options request",
+      "level": 2
+    },
+    {
+      "title": "CORS",
+      "level": 2
+    },
+    {
+      "title": "HTTP Requests Answers",
+      "level": 2
+    },
+    {
+      "title": "OpenTelemetry, Sentry, Prometheus, and Grafana",
+      "level": 2
+    },
+    {
+      "title": "Vulnerabilities",
+      "level": 2
+    },
+    {
+      "title": "Typescript",
+      "level": 2
+    },
+    {
+      "title": "React",
+      "level": 2
+    },
+    {
+      "title": "Архитектура",
+      "level": 2
+    },
+    {
+      "title": "What is gRPC?",
+      "level": 2
+    },
+    {
+      "title": "Что такое HTTP запрос? Чем от отличается от HTTPS?",
+      "level": 2
+    },
+    {
+      "title": "Как создается HTTP-запрос?",
+      "level": 2
+    },
+    {
+      "title": "Что такое HTTP-запрос? Как он проходит путь от клиента до сервера?",
+      "level": 3
+    },
+    {
+      "title": "CDN and why we need it",
+      "level": 2
+    },
+    {
+      "title": "Cookie. Какие аттрибуты?",
+      "level": 2
+    },
+    {
+      "title": "Array Methods",
+      "level": 2
+    },
+    {
+      "title": "Set, Map, WeakSet, WeakMap",
+      "level": 2
+    },
+    {
+      "title": "React Fiber",
+      "level": 2
+    },
+    {
+      "title": "Service Worker vs Web worker",
+      "level": 2
+    },
+    {
+      "title": "Service Worker",
+      "level": 3
+    },
+    {
+      "title": "Web Worker",
+      "level": 3
+    },
+    {
+      "title": "Comparison",
+      "level": 3
+    },
+    {
+      "title": "Concurrent rendering",
+      "level": 2
+    },
+    {
+      "title": "Elasticsearch",
+      "level": 2
+    },
+    {
+      "title": "Inverted vs Forward index",
+      "level": 2
+    },
+    {
+      "title": "Cookies",
+      "level": 2
+    },
+    {
+      "title": "useEffect vs useLayoutEffect",
+      "level": 2
+    },
+    {
+      "title": "React Suspense",
+      "level": 2
+    },
+    {
+      "title": "Lazy Loading",
+      "level": 2
+    },
+    {
+      "title": "React hydration",
+      "level": 2
+    },
+    {
+      "title": "Redux / RTK Query / Tanstack Query / SWR",
+      "level": 2
+    },
+    {
+      "title": "CSS Specificity",
+      "level": 2
+    },
+    {
+      "title": "HOC in React",
+      "level": 2
+    },
+    {
+      "title": "Dashboard",
+      "level": 1
+    },
+    {
+      "title": "Object cloning/copying in JS",
+      "level": 2
+    },
+    {
+      "title": "Bundle Optimizations",
+      "level": 2
+    },
+    {
+      "title": "The biggest wins are usually:",
+      "level": 3
+    },
+    {
+      "title": "Rollup/ Rolldown / ESbuild /  Webpack / Rspack",
+      "level": 2
+    },
+    {
+      "title": "Compiler/Transpiler ≠ Bundler:",
+      "level": 2
+    },
+    {
+      "title": "i18n VS l10n",
+      "level": 2
+    },
+    {
+      "title": "{translate(\"welcome_back\", { name })}",
+      "level": 1
+    },
+    {
+      "title": "IndexedDB",
+      "level": 2
+    },
+    {
+      "title": "Controlled/Uncontrolled components",
+      "level": 2
+    },
+    {
+      "title": "React Keys",
+      "level": 2
+    },
+    {
+      "title": "Virtual DOM",
+      "level": 2
+    },
+    {
+      "title": "Fiber 2.0",
+      "level": 2
+    },
+    {
+      "title": "The Problem It Solved: The Old \"Stack\" Reconciler",
+      "level": 2
+    },
+    {
+      "title": "Core Features of React Fiber",
+      "level": 2
+    },
+    {
+      "title": "How Fiber Works Under the Hood",
+      "level": 2
+    },
+    {
+      "title": "Why should you care?",
+      "level": 2
+    },
+    {
+      "title": "SSE",
+      "level": 2
+    },
+    {
+      "title": "WebSocket",
+      "level": 3
+    },
+    {
+      "title": "Long Polling",
+      "level": 2
+    },
+    {
+      "title": "Как использовать Fetch API и Streams для обработки больших объемов данных?",
+      "level": 2
+    },
+    {
+      "title": "Что такое React Router?",
+      "level": 2
+    },
+    {
+      "title": "Что такое Cookie и для чего они используются?",
+      "level": 2
+    },
+    {
+      "title": "Что такое SPA?",
+      "level": 2
+    },
+    {
+      "title": "В чем разница передачи данных через query-параметры и body запроса?",
+      "level": 2
+    },
+    {
+      "title": "Реляционные базы данных",
+      "level": 2
+    },
+    {
+      "title": "Database joins ???",
+      "level": 2
+    },
+    {
+      "title": "Что такое setTimeout и setInterval?",
+      "level": 2
+    },
+    {
+      "title": "В чем разница между интерфейсом (interface) и типом (type) в TypeScript?",
+      "level": 2
+    },
+    {
+      "title": "В чем отличие между microtask queue и task queue?",
+      "level": 2
+    },
+    {
+      "title": "Что такое замыкания в JavaScript и для чего они нужны",
+      "level": 2
+    },
+    {
+      "title": "Что такое промисы в JavaScript и как они работают",
+      "level": 2
+    },
+    {
+      "title": "Ассоциации из жизни",
+      "level": 3
+    },
+    {
+      "title": "Как различить похожие пары",
+      "level": 3
+    },
+    {
+      "title": "Где это встречается на практике",
+      "level": 3
+    },
+    {
+      "title": "Жизненный цикл реакт компонентов",
+      "level": 2
+    },
+    {
+      "title": "useEffect / useLayoutEffect",
+      "level": 2
+    },
+    {
+      "title": "Опиши процесс от ввода адреса сайта в браузере до отображения страницы",
+      "level": 2
+    },
+    {
+      "title": "Способы хранения данных в браузере:",
+      "level": 2
+    },
+    {
+      "title": "Load JS scripts: async / defer",
+      "level": 2
+    },
+    {
+      "title": "REST:rest",
+      "level": 2
+    },
+    {
+      "title": "Различия между HTTP/1.1 и HTTP/2:",
+      "level": 2
+    },
+    {
+      "title": "🍪 Cookies",
+      "level": 2
+    },
+    {
+      "title": "Common uses",
+      "level": 3
+    },
+    {
+      "title": "Images optimization",
+      "level": 2
+    },
+    {
+      "title": "SVG. Best (and worst) parts",
+      "level": 2
+    },
+    {
+      "title": "GraphQL",
+      "level": 2
+    },
+    {
+      "title": "gRPC",
+      "level": 2
+    },
+    {
+      "title": "Cross-context communication in the browser",
+      "level": 2
+    },
+    {
+      "title": "One question sorts them: who is talking to whom?",
+      "level": 2
+    },
+    {
+      "title": "What they have in common",
+      "level": 2
+    },
+    {
+      "title": "Each one in a line or two",
+      "level": 2
+    },
+    {
+      "title": "Picking one",
+      "level": 2
+    }
+  ]
+}
