@@ -841,7 +841,7 @@ def static_topic(x):
     z=x['explanation']
     code=z['code'] or x['code']
     walkthrough='<ol>'+''.join(f'<li>{esc(line)}</li>' for line in z['walkthrough'])+'</ol>' if z['walkthrough'] else ''
-    sample=f'<div class="worked-example"><h3>Разберём на примере</h3><p>{esc(z["example"])}</p>'+(f'<pre><code>{esc(code)}</code></pre>' if code else '')+walkthrough+'</div>'
+    sample=f'<div class="worked-example" id="example-{x["id"]}"><h3>Разберём на примере</h3><p>{esc(z["example"])}</p>'+(f'<pre><code>{esc(code)}</code></pre>' if code else '')+walkthrough+'</div>'
     terms='<details class="topic-reference"'+(' open' if x['drill'] else '')+'><summary>Термины и элементы темы</summary><dl>'+''.join(f'<dt>{esc(i["name"])}</dt><dd>{esc(i["detail"])}</dd>' for i in x['items'])+'</dl></details>'
     return f'<section class="theory" id="{x["id"]}"><h2>{esc(x["title"])}</h2><p class="explanation-context">{esc(z["context"])}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">'+''.join(f'<li>{esc(step)}</li>' for step in z['steps'])+f'</ol>{sample}{terms}<div class="interview-takeaway"><h3>Коротко для собеседования</h3><p>{esc(z["takeaway"])}</p></div><p>{esc(x["note"])}</p><p class="sources">{src}</p></section>'
 

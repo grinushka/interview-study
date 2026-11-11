@@ -38,7 +38,7 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT/'preview-desktop.png'),full_page=False)
     page.locator('#search').fill('satisfies')
     assert page.locator('.search-result').count()>0
-    page.locator('.search-result').first.click()
+    page.locator('[data-search-type="question"]').first.click()
     page.wait_for_selector('.question')
     card=page.locator('.question').filter(has=page.locator('[data-answer="assertions-main"]'))
     if card.count()!=1:card=page.locator('.question').first

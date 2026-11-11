@@ -23,6 +23,108 @@
   const view = ['home','lesson','review','interview','coverage','progress'].includes(params.get('view')) ? params.get('view') : 'home';
   const e = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const link = (v='home', id='', q='') => `index.html?view=${encodeURIComponent(v)}${id?'&lesson='+encodeURIComponent(id):''}${q?'&question='+encodeURIComponent(q):''}`;
+  const searchTypes = {all:'Все',theory:'Теория',question:'Вопросы',example:'Примеры'};
+  const searchState = {inline:{query:'',type:'all',limit:12},global:{query:'',type:'all',limit:12}};
+  const synonymGroups = [
+    ['promise','промис'], ['closure','closures','замыкан'], ['context','контекст'],
+    ['dependencies','dependency','зависим'], ['garbage','gc','сборк','мусор'],
+    ['reference','identity','ссыл'], ['сохран'], ['worker','воркер'], ['render','рендер'],
+    ['hydration','гидратац'], ['specificity','специфичност']
+  ];
+  const searchText = value => normalize(value).replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+  function searchTerms(query){
+    const stop=new Set(['как','что','это','чем','для','при','или','на','с','и','по','в','the','a','of']);
+    return [...new Set(searchText(query).replace(/garbage collection/g,'gc').split(/\s+/).filter(w=>w&&!stop.has(w)))].map(word=>{
+      const stem=/[а-я]/.test(word)&&word.length>5?word.replace(/(?:иями|ами|ого|ему|ями|ыми|ими|ение|ения|ией|ия|ие|ые|ий|ый|ой|ов|ам|ах|ях|ом|ем|ку|ки|ка|ы|а|я|у|ю|е|и)$/u,''):word;
+      const group=synonymGroups.find(g=>g.some(s=>s===word||s===stem||(/[а-я]/.test(s)&&stem.startsWith(s))));
+      return group||[stem];
+    });
+  }
+  const searchDocuments=D.topics.flatMap(t=>{
+    const z=t.explanation;
+    const theory=[z.context,...z.steps,z.takeaway,t.summary,t.note,...t.items.map(i=>i.name+' '+i.detail)].join(' ');
+    const example=[z.example,z.code,t.code,...z.walkthrough].join(' ');
+    return [
+      {id:t.id+'-theory',topic:t.id,type:'theory',title:t.title,preview:theory,text:theory},
+      {id:t.id+'-example',topic:t.id,type:'example',title:t.title+' — пример',preview:z.example,text:example},
+      ...D.questions.filter(q=>q.topic===t.id).map(q=>({id:q.id,topic:t.id,type:'question',title:q.prompt,preview:q.prompt,text:[q.prompt,q.answer,...q.followups].join(' ')}))
+    ];
+  }).map(doc=>({...doc,normalizedTitle:searchText(doc.title),normalizedText:searchText(doc.text),normalizedTopic:searchText(T.get(doc.topic).title+' '+L.get(T.get(doc.topic).lesson).title)}));
+  function findDocuments(query){
+    const terms=searchTerms(query);if(!terms.length)return [];
+    const phrase=searchText(query);
+    return searchDocuments.flatMap(doc=>{
+      let score=0;
+      for(const alternatives of terms){
+        if(alternatives.some(term=>doc.normalizedTitle.includes(term)))score+=10;
+        else if(alternatives.some(term=>doc.normalizedTopic.includes(term)))score+=6;
+        else if(alternatives.some(term=>doc.normalizedText.includes(term)))score+=2;
+        else return [];
+      }
+      if(doc.normalizedTitle===phrase)score+=40;
+      else if(doc.normalizedTitle.includes(phrase))score+=15;
+      return [{...doc,score}];
+    }).sort((a,b)=>b.score-a.score||a.title.localeCompare(b.title,'ru'));
+  }
+  function highlighted(text,query,short=false){
+    const needles=[...new Set(searchTerms(query).flat())].filter(Boolean).sort((a,b)=>b.length-a.length);
+    const escaped=needles.map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+    const regex=escaped.length?new RegExp(escaped.join('|'),'giu'):null;
+    let value=String(text);
+    if(short&&value.length>210){
+      const hit=regex?regex.exec(normalize(value)):null;
+      const start=Math.max(0,(hit?.index||0)-65),end=Math.min(value.length,start+210);
+      value=(start?'…':'')+value.slice(start,end)+(end<value.length?'…':'');
+      if(regex)regex.lastIndex=0;
+    }
+    if(!regex)return e(value);
+    let result='',last=0;
+    for(const match of value.matchAll(regex)){
+      result+=e(value.slice(last,match.index))+'<mark>'+e(match[0])+'</mark>';last=match.index+match[0].length;
+    }
+    return result+e(value.slice(last));
+  }
+  function searchResult(doc,query){
+    const t=T.get(doc.topic);
+    const href=doc.type==='question'?link('lesson',t.lesson,doc.id):link('lesson',t.lesson)+(doc.type==='example'?'#example-':'#topic-')+t.id;
+    return `<a class="search-result" data-search-type="${doc.type}" href="${href}"><div class="row spread"><span class="search-kind">${searchTypes[doc.type]}</span>${doc.type==='question'?`<span class="small muted">${e(ratings[questionRating(doc.id)])}</span>`:''}</div><strong>${highlighted(doc.title,query)}</strong>${doc.type==='question'?'':`<p>${highlighted(doc.preview,query,true)}</p>`}<span class="search-result-action">${doc.type==='question'?'Попробовать ответить':doc.type==='example'?'Открыть разбор':'Читать объяснение'} →</span></a>`;
+  }
+  function renderSearch(host){
+    const ui=searchState[host],box=document.getElementById(host==='global'?'global-search-results':'search-results');
+    if(!box)return;
+    const query=ui.query.trim();
+    if(host==='inline')document.getElementById('lesson-grid').hidden=!!query;
+    if(!query){
+      box.innerHTML=host==='global'?`<p class="muted small">Ищи по названию, фразе из объяснения или коду. Русские и английские термины тоже подходят.</p><div class="row">${['satisfies','Promise','замыкания','контекст'].map(q=>`<button data-action="search-suggestion" data-host="${host}" data-query="${q}">${q}</button>`).join('')}</div>`:'';return;
+    }
+    const found=findDocuments(query),counts={all:found.length,theory:0,question:0,example:0};
+    found.forEach(doc=>counts[doc.type]++);
+    const groups=new Map();
+    for(const doc of found){
+      if(ui.type!=='all'&&doc.type!==ui.type)continue;
+      if(!groups.has(doc.topic))groups.set(doc.topic,{score:doc.score,docs:[]});
+      groups.get(doc.topic).docs.push(doc);
+    }
+    const allGroups=[...groups.entries()].sort((a,b)=>b[1].score-a[1].score);
+    box.innerHTML=`<nav class="search-types" aria-label="Тип результата">${Object.entries(searchTypes).map(([id,label])=>`<button data-action="search-filter" data-host="${host}" data-type="${id}" aria-pressed="${ui.type===id}">${label} <span>${counts[id]}</span></button>`).join('')}</nav><p class="small muted search-count" role="status">${allGroups.length?`Тем: ${allGroups.length}. Совпадений: ${ui.type==='all'?counts.all:counts[ui.type]}.`:found.length?'В этом типе нет совпадений. Попробуй «Все».':'Совпадений нет. Попробуй другое слово, английский термин или более короткую фразу.'}</p>${allGroups.slice(0,ui.limit).map(([id,group])=>{
+      const t=T.get(id),l=L.get(t.lesson),docs=group.docs;
+      const content=docs.filter(d=>d.type!=='question').sort((a,b)=>a.type==='theory'?-1:b.type==='theory'?1:0);
+      const questions=docs.filter(d=>d.type==='question');
+      return `<section class="search-topic"><div class="search-topic-label">Урок ${String(l.number).padStart(2,'0')} · ${e(l.title)}</div><h3>${highlighted(t.title,query)}</h3>${content.map(d=>searchResult(d,query)).join('')}${questions.slice(0,2).map(d=>searchResult(d,query)).join('')}${questions.length>2?`<details class="search-more-questions"><summary>Ещё вопросов по теме: ${questions.length-2}</summary>${questions.slice(2).map(d=>searchResult(d,query)).join('')}</details>`:''}</section>`;
+    }).join('')}${allGroups.length>ui.limit?`<button data-action="search-more" data-host="${host}">Ещё темы (${allGroups.length-ui.limit})</button>`:''}`;
+  }
+  function ensureSearchDialog(){
+    if(document.getElementById('global-search-dialog'))return;
+    const dialog=document.createElement('dialog');dialog.id='global-search-dialog';dialog.className='global-search-dialog';dialog.setAttribute('aria-labelledby','global-search-title');
+    dialog.innerHTML=`<div class="global-search-header"><div class="row spread"><h2 id="global-search-title">Поиск по всем урокам</h2><button data-action="close-search" aria-label="Закрыть поиск">✕</button></div><label class="small" for="global-search-input">Найти объяснение, вопрос или пример</label><input id="global-search-input" class="search" type="search" maxlength="200" autocomplete="off" placeholder="Например: allSettled, зависимость, замыкания…"></div><div id="global-search-results" class="global-search-results"></div>`;
+    document.body.append(dialog);
+    dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+  }
+  function openSearch(){
+    ensureSearchDialog();const dialog=document.getElementById('global-search-dialog');
+    renderSearch('global');if(!dialog.open)dialog.showModal();
+    const input=document.getElementById('global-search-input');input.value=searchState.global.query;input.focus();input.select();
+  }
   function shuffle(arr) {
     const out=[...arr];
     for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
@@ -62,19 +164,19 @@
   function shell(content,title){
     const nav=[['home','Уроки'],['review','Повторение'],['interview','Собеседование'],['progress','Прогресс'],['coverage','Реестр тем']];
     document.title=title+' · Собеседование';
-    document.getElementById('app').innerHTML=`<div class="layout"><aside class="sidebar"><a class="brand" href="${link()}">собес /<br>можно объяснить<span>Frontend study room</span></a><nav class="main-nav" aria-label="Главная навигация">${nav.map(([v,n])=>`<a href="${link(v)}" ${view===v?'aria-current="page"':''}>${n}</a>`).join('')}</nav><nav class="lesson-nav" aria-label="Все уроки">${D.lessons.map(l=>`<a href="${link('lesson',l.id)}" ${currentLesson===l.id?'aria-current="page"':''}>${String(l.number).padStart(2,'0')} / ${e(l.title)}</a>`).join('')}</nav><div class="footer-note">Твоя заметка + документация.<br>Понять, затем вспомнить.<br><a href="${e(D.notion)}" target="_blank" rel="noopener">Открыть Notion ↗</a></div></aside><div class="content"><div class="topline"><span>ПОДГОТОВКА К СОБЕСЕДОВАНИЯМ</span><span>RU + EN · локально</span></div><main id="main" tabindex="-1">${content}</main><footer class="page-footer">Материал обновлён ${e(D.date)}. Ответы оцениваешь ты — по образцу и ключевым пунктам. <a href="${link('progress')}">Сохранить копию прогресса</a></footer></div></div>`;
+    document.getElementById('app').innerHTML=`<div class="layout"><aside class="sidebar"><a class="brand" href="${link()}">собес /<br>можно объяснить<span>Frontend study room</span></a><nav class="main-nav" aria-label="Главная навигация">${nav.map(([v,n])=>`<a href="${link(v)}" ${view===v?'aria-current="page"':''}>${n}</a>`).join('')}</nav><nav class="lesson-nav" aria-label="Все уроки">${D.lessons.map(l=>`<a href="${link('lesson',l.id)}" ${currentLesson===l.id?'aria-current="page"':''}>${String(l.number).padStart(2,'0')} / ${e(l.title)}</a>`).join('')}</nav><div class="footer-note">Твоя заметка + документация.<br>Понять, затем вспомнить.<br><a href="${e(D.notion)}" target="_blank" rel="noopener">Открыть Notion ↗</a></div></aside><div class="content"><div class="topline"><span>ПОДГОТОВКА К СОБЕСЕДОВАНИЯМ</span><button class="global-search-open" data-action="open-search" aria-label="Поиск по всем урокам"><span aria-hidden="true">⌕</span><span class="search-open-label">Поиск по урокам</span><kbd>Ctrl K</kbd></button></div><main id="main" tabindex="-1">${content}</main><footer class="page-footer">Материал обновлён ${e(D.date)}. Ответы оцениваешь ты — по образцу и ключевым пунктам. <a href="${link('progress')}">Сохранить копию прогресса</a></footer></div></div>`;
   }
   function sources(ids,notion=false){return `<div class="sources">${notion?`<a href="${e(D.notion)}" target="_blank" rel="noopener">Твоя заметка Notion ↗</a>`:''}${ids.map(id=>D.sources[id]?`<a href="${e(D.sources[id].url)}" target="_blank" rel="noopener">${e(D.sources[id].title)} ↗</a>`:'').join('')}</div>`;}
   function progressStats(){const s=stats();return `<div class="stats"><div class="stat"><strong>${D.lessons.length}</strong><span>тематических уроков</span></div><div class="stat"><strong>${s.read}<span> / ${s.total}</span></strong><span>разделов прочитано</span></div><div class="stat"><strong>${s.know}<span> / ${s.questions}</span></strong><span>могу объяснить</span></div></div>`;}
   function home(){
     const next=D.lessons.find(l=>l.topics.some(id=>!state.read[id]))||D.lessons[0];
-    shell(`<section class="hero"><div class="hero-grid"><div><div class="eyebrow">Теория → вспомнить → объяснить</div><h1>Знать — это суметь<br>рассказать своими словами.</h1><p>Объяснения по шагам, разобранные примеры и вопросы без подсказок. Сначала понять тему, затем научиться рассказывать о ней.</p><div class="row"><a class="button primary" href="${link('lesson',next.id)}">${stats().read?'Продолжить':'Начать с первого урока'} →</a><a class="button" href="${link('review')}">Повторить вопросы</a></div></div><div class="orbit" aria-hidden="true">{ }</div></div></section>${progressStats()}<div class="row spread section-heading"><h2>Твоя программа</h2><span class="small muted">${D.topics.length} разделов · ${D.questions.length} вопросов</span></div><label for="search">Найти тему или вопрос</label><input id="search" class="search" type="search" placeholder="Например: satisfies, Promise, контекст…" autocomplete="off"><div id="search-results" aria-live="polite"></div><div class="lesson-grid section-heading" id="lesson-grid">${D.lessons.map(l=>{const s=stats(l.id);return `<a class="lesson-card" href="${link('lesson',l.id)}"><span class="card-number">УРОК ${String(l.number).padStart(2,'0')}</span><h3>${e(l.title)}</h3><p>${e(l.subtitle)}</p><div class="card-foot"><span>${l.topics.length} разделов · ${s.questions} вопросов</span><span>${s.know} могу объяснить ↗</span></div><div class="track" aria-label="Прочитано ${s.read} из ${s.total} разделов"><span style="width:${s.read/s.total*100}%"></span></div></a>`;}).join('')}</div><div class="panel"><h2>Как заниматься</h2><p>Прочитай объяснение и проследи пример по шагам. В конце раздела есть короткий ответ для собеседования. Затем попробуй ответить без подсказок и сверься с образцом.</p><p class="small muted">В списках проверяются все элементы: четыре комбинатора Promise, пять принципов SOLID и каждый пункт обозначенного учебного набора. Для сложной теории есть небольшие примеры кода.</p></div>`,'Твоя подготовка');
+    shell(`<section class="hero"><div class="hero-grid"><div><div class="eyebrow">Теория → вспомнить → объяснить</div><h1>Знать — это суметь<br>рассказать своими словами.</h1><p>Объяснения по шагам, разобранные примеры и вопросы без подсказок. Сначала понять тему, затем научиться рассказывать о ней.</p><div class="row"><a class="button primary" href="${link('lesson',next.id)}">${stats().read?'Продолжить':'Начать с первого урока'} →</a><a class="button" href="${link('review')}">Повторить вопросы</a></div></div><div class="orbit" aria-hidden="true">{ }</div></div></section>${progressStats()}<div class="row spread section-heading"><h2>Твоя программа</h2><span class="small muted">${D.topics.length} разделов · ${D.questions.length} вопросов</span></div><label for="search">Найти объяснение, вопрос или пример</label><input id="search" class="search" maxlength="200" type="search" placeholder="Например: satisfies, Promise, контекст…" autocomplete="off"><div id="search-results"></div><div class="lesson-grid section-heading" id="lesson-grid">${D.lessons.map(l=>{const s=stats(l.id);return `<a class="lesson-card" href="${link('lesson',l.id)}"><span class="card-number">УРОК ${String(l.number).padStart(2,'0')}</span><h3>${e(l.title)}</h3><p>${e(l.subtitle)}</p><div class="card-foot"><span>${l.topics.length} разделов · ${s.questions} вопросов</span><span>${s.know} могу объяснить ↗</span></div><div class="track" aria-label="Прочитано ${s.read} из ${s.total} разделов"><span style="width:${s.read/s.total*100}%"></span></div></a>`;}).join('')}</div><div class="panel"><h2>Как заниматься</h2><p>Прочитай объяснение и проследи пример по шагам. В конце раздела есть короткий ответ для собеседования. Затем попробуй ответить без подсказок и сверься с образцом.</p><p class="small muted">В списках проверяются все элементы: четыре комбинатора Promise, пять принципов SOLID и каждый пункт обозначенного учебного набора. Для сложной теории есть небольшие примеры кода.</p></div>`,'Твоя подготовка');
   }
   function readButton(t){return `<button data-action="read" data-topic="${t.id}" aria-pressed="${!!state.read[t.id]}" class="${state.read[t.id]?'lesson-done':''}">${state.read[t.id]?'✓ Прочитано':'Отметить прочитанным'}</button>`;}
   function theory(t,n){
     const fromNotion=t.notion||D.coverage.some(r=>r.origin==='Notion'&&r.topic===t.id);
     const z=t.explanation, code=z.code||t.code;
-    return `<section class="theory" id="topic-${t.id}"><div class="topic-index">РАЗДЕЛ ${String(n+1).padStart(2,'0')}</div><h2>${e(t.title)}</h2><p class="explanation-context">${e(z.context)}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">${z.steps.map(step=>`<li>${e(step)}</li>`).join('')}</ol><div class="worked-example"><h3>Разберём на примере</h3><p>${e(z.example)}</p>${code?`<pre><code>${e(code)}</code></pre>`:''}${z.walkthrough.length?`<ol>${z.walkthrough.map(line=>`<li>${e(line)}</li>`).join('')}</ol>`:''}</div><details class="topic-reference" ${t.drill?'open':''}><summary>Термины и элементы темы · ${t.items.length}</summary><dl>${t.items.map(i=>`<dt>${e(i.name)}</dt><dd>${e(i.detail)}</dd>`).join('')}</dl></details><div class="interview-takeaway"><h3>Коротко для собеседования</h3><p>${e(z.takeaway)}</p></div>${t.note?`<div class="notice">${e(t.note)}</div>`:''}<div class="row spread" style="margin-top:22px">${readButton(t)}<button data-action="topic-practice" data-topic="${t.id}">Вопросы по разделу →</button></div>${sources(t.sources,fromNotion)}</section>`;
+    return `<section class="theory" id="topic-${t.id}"><div class="topic-index">РАЗДЕЛ ${String(n+1).padStart(2,'0')}</div><h2>${e(t.title)}</h2><p class="explanation-context">${e(z.context)}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">${z.steps.map(step=>`<li>${e(step)}</li>`).join('')}</ol><div class="worked-example" id="example-${t.id}"><h3>Разберём на примере</h3><p>${e(z.example)}</p>${code?`<pre><code>${e(code)}</code></pre>`:''}${z.walkthrough.length?`<ol>${z.walkthrough.map(line=>`<li>${e(line)}</li>`).join('')}</ol>`:''}</div><details class="topic-reference" ${t.drill?'open':''}><summary>Термины и элементы темы · ${t.items.length}</summary><dl>${t.items.map(i=>`<dt>${e(i.name)}</dt><dd>${e(i.detail)}</dd>`).join('')}</dl></details><div class="interview-takeaway"><h3>Коротко для собеседования</h3><p>${e(z.takeaway)}</p></div>${t.note?`<div class="notice">${e(t.note)}</div>`:''}<div class="row spread" style="margin-top:22px">${readButton(t)}<button data-action="topic-practice" data-topic="${t.id}">Вопросы по разделу →</button></div>${sources(t.sources,fromNotion)}</section>`;
   }
   function lesson(){
     const l=L.get(params.get('lesson'));
@@ -152,11 +254,7 @@
   }
   function normalize(text){return String(text).toLocaleLowerCase('ru').replaceAll('ё','е');}
   function search(query){
-    const box=document.getElementById('search-results'), grid=document.getElementById('lesson-grid');
-    if(!query.trim()){box.innerHTML='';grid.hidden=false;return;}
-    grid.hidden=true;const needle=normalize(query.trim());
-    const found=D.questions.filter(q=>normalize(q.prompt+' '+T.get(q.topic).title+' '+L.get(q.lesson).title).includes(needle));
-    box.innerHTML=`<p class="small muted" style="margin-top:15px">Найдено вопросов: ${found.length}${found.length>50?' · первые 50':''}</p>`+(found.length?found.slice(0,50).map(q=>`<a class="search-result" href="${link('lesson',q.lesson,q.id)}"><strong>${e(q.prompt)}</strong><span>${e(L.get(q.lesson).title)} · ${e(labels[q.kind])}</span></a>`).join(''):'<div class="empty">Попробуй другое слово или английское название API.</div>');
+    searchState.inline.query=query;searchState.inline.limit=12;renderSearch('inline');
   }
   function updateRatingLabels(id){
     document.querySelectorAll('.question').forEach(card=>{if(card.dataset.q!==id)return;card.querySelector('[data-rating-label]').textContent=ratings[questionRating(id)];card.querySelectorAll('[data-action=rate]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.rating===questionRating(id))));});
@@ -166,6 +264,7 @@
     const el=event.target;
     if(el.matches('[data-answer]')){state.answers[el.dataset.answer]=el.value;save();document.querySelectorAll('[data-answer]').forEach(other=>{if(other!==el&&other.dataset.answer===el.dataset.answer)other.value=el.value;});}
     if(el.id==='search')search(el.value);
+    if(el.id==='global-search-input'){searchState.global.query=el.value;searchState.global.limit=12;renderSearch('global');}
     if(el.id==='coverage-search')renderCoverage(el.value);
   });
   document.addEventListener('change',async event=>{
@@ -185,6 +284,11 @@
   document.addEventListener('click',event=>{
     const b=event.target.closest('[data-action]');if(!b)return;
     const action=b.dataset.action, card=b.closest('[data-q]'), q=card?Q.get(card.dataset.q):null;
+    if(action==='open-search')openSearch();
+    if(action==='close-search')document.getElementById('global-search-dialog').close();
+    if(action==='search-filter'){searchState[b.dataset.host].type=b.dataset.type;searchState[b.dataset.host].limit=12;renderSearch(b.dataset.host);}
+    if(action==='search-more'){searchState[b.dataset.host].limit+=12;renderSearch(b.dataset.host);}
+    if(action==='search-suggestion'){const ui=searchState[b.dataset.host];ui.query=b.dataset.query;ui.type='all';document.getElementById('global-search-input').value=ui.query;renderSearch(b.dataset.host);}
     if(action==='read')markRead(b.dataset.topic);
     if(action==='mode'){lessonMode=b.dataset.mode;document.querySelectorAll('[data-action=mode]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.mode===lessonMode)));renderLessonContent();}
     if(action==='topic-practice'){lessonMode='practice';document.querySelectorAll('[data-action=mode]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.mode===lessonMode)));renderLessonContent(b.dataset.topic);document.getElementById('lesson-content').scrollIntoView();}
@@ -226,6 +330,10 @@
   });
   // Keep independent tabs of this same local entry point in sync without overwriting active typing.
   window.addEventListener('storage',event=>{if(event.key===KEY&&event.newValue){try{state=validate(JSON.parse(event.newValue));toast('Прогресс обновлён в другой вкладке. Перезагрузи страницу для обновления отображения.');}catch{ /* Ignore unrelated invalid data. */ }}});
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&document.getElementById('global-search-dialog')?.open){event.preventDefault();document.getElementById('global-search-dialog').close();}
+    else if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openSearch();}
+  });
   ({home,lesson,review,interview,coverage,progress}[view])();
-  if(location.hash.startsWith('#topic-'))setTimeout(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView(),50);
+  if(location.hash.startsWith('#topic-')||location.hash.startsWith('#example-'))setTimeout(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView(),50);
 })();
