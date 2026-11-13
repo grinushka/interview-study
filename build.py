@@ -1,6 +1,6 @@
 """Build the offline course. No third-party dependencies; only this folder is written."""
 from pathlib import Path
-import json, html, re
+import json, html, re, hashlib
 from explanations import EXPLANATIONS, ex
 from revision_content import additions, revise_theory, revise_questions
 from timer_practice import add_topic as add_timer_topic, add_questions as add_timer_questions
@@ -829,6 +829,9 @@ add_timer_questions(questions, byid, registry)
 add_tasks(questions, byid, registry)
 data=dict(version=1,title='PrepFront',date='2026-11-13',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
 
+# Version static assets together so a new HTML page never reuses old branding/data.
+ASSET_VERSION = hashlib.sha256(json.dumps(data,ensure_ascii=False).encode('utf-8') + (ROOT/'app.js').read_bytes() + (ROOT/'style.css').read_bytes()).hexdigest()[:12]
+
 def esc(v): return html.escape(str(v),quote=True)
 def static_answer_blocks(blocks):
     result=''
@@ -850,8 +853,8 @@ def static_topic(x):
 
 def write_page(name,title,view,content,lesson=''):
     page=f'''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(title)} · PrepFront</title><link rel="stylesheet" href="style.css"></head>
-<body data-view="{view}" data-lesson="{lesson}"><a class="skip" href="#main">К содержимому</a><div id="storage-warning" role="status" hidden></div><div id="app"><header class="static-header"><a href="index.html">← Все уроки</a><h1>{esc(title)}</h1></header><main id="main">{content}</main></div><div id="toast" role="status" aria-live="polite"></div><script src="data.js"></script><script src="app.js"></script></body></html>'''
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(title)} · PrepFront</title><link rel="stylesheet" href="style.css?v={ASSET_VERSION}"></head>
+<body data-view="{view}" data-lesson="{lesson}"><a class="skip" href="#main">К содержимому</a><div id="storage-warning" role="status" hidden></div><div id="app"><header class="static-header"><a href="index.html">← Все уроки</a><h1>{esc(title)}</h1></header><main id="main">{content}</main></div><div id="toast" role="status" aria-live="polite"></div><script src="data.js?v={ASSET_VERSION}"></script><script src="app.js?v={ASSET_VERSION}"></script></body></html>'''
     (ROOT/name).write_text(page,encoding='utf-8')
 
 if __name__=='__main__':
