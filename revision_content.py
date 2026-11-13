@@ -583,9 +583,8 @@ def revise_questions(questions, byid, explanations, followup_questions, registry
      ('41795f65d61281dba37ffd73dc6713f1','Образец короткого ответа','cloning'),
     ]
     for id,title,tid in note_map:
-        key='gen-'+id
-        sources[key]=(f'Gen notes: {title}',f'https://app.notion.com/p/{id}')
-        if key not in byid[tid]['sources']:byid[tid]['sources'].append(key)
-        registry.append(dict(origin='Notion · Gen notes',title=title,topic=tid,lesson=byid[tid]['lesson'],question=tid+'-main',status='included',url=sources[key][1]))
+        # The user moved these implemented notes to Trash. Keep provenance in
+        # coverage, but present only accessible documentation links in lessons.
+        registry.append(dict(origin='Notion · Gen notes',title=title,topic=tid,lesson=byid[tid]['lesson'],question=tid+'-main',status='included',sourceArchived=True,url=f'https://app.notion.com/p/{id}'))
     for tid in ('worker-alternatives','web-locks','postmessage-safety','storage-events','iframe-uses','web-notifications'):
         registry.append(dict(origin='Дополнение · Gen notes',title=byid[tid]['title'],topic=tid,lesson='communication',question=tid+'-main',status='included'))

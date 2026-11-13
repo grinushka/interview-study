@@ -3,6 +3,8 @@ from pathlib import Path
 import json, html, re
 from explanations import EXPLANATIONS, ex
 from revision_content import additions, revise_theory, revise_questions
+from timer_practice import add_topic as add_timer_topic, add_questions as add_timer_questions
+from taskbook import add_tasks
 
 ROOT = Path(__file__).resolve().parent
 NOTION = 'https://app.notion.com/p/questions-37395f65d61280cf83b9ec0b1f33492d'
@@ -592,6 +594,7 @@ S['httpversions']=('MDN: evolution of HTTP','https://developer.mozilla.org/en-US
 S['pagination']=('Slack Engineering: API pagination','https://slack.engineering/evolving-api-pagination-at-slack/')
 S['vite']=('Vite: features','https://vite.dev/guide/features')
 additions(t, ex, S)
+add_timer_topic(t, ex, S)
 byid={x['id']:x for x in topics}
 revise_theory(byid, EXPLANATIONS)
 byid['pagination']['sources']=['pagination']
@@ -822,6 +825,8 @@ assert set(EXPLANATIONS)==set(byid), 'Every topic needs its own complete explana
 for topic in topics:
     topic['explanation']=EXPLANATIONS[topic['id']]
 revise_questions(questions, byid, EXPLANATIONS, FOLLOWUPS, registry, S)
+add_timer_questions(questions, byid, registry)
+add_tasks(questions, byid, registry)
 data=dict(version=1,title='Практика собеседований',date='2026-11-13',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
 
 def esc(v): return html.escape(str(v),quote=True)
@@ -852,11 +857,12 @@ def write_page(name,title,view,content,lesson=''):
 if __name__=='__main__':
     (ROOT/'data.js').write_text('window.STUDY_DATA = '+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8')
     (ROOT/'coverage.json').write_text(json.dumps(registry,ensure_ascii=False,indent=2),encoding='utf-8')
-    listing='<p>Объяснения по шагам, разобранные примеры, вопросы без подсказок и смешанное повторение. Включите JavaScript для упражнений и сохранения прогресса.</p><ol>'+''.join(f'<li><a href="lesson-{l["number"]:02d}.html">{esc(l["title"])}</a></li>' for l in data['lessons'])+'</ol><p><a href="review.html">Повторение</a> · <a href="interview.html">Мини-собеседование</a> · <a href="coverage.html">Реестр тем</a></p>'
+    listing='<p>Объяснения по шагам, разобранные примеры, вопросы без подсказок и смешанное повторение. Включите JavaScript для упражнений и сохранения прогресса.</p><ol>'+''.join(f'<li><a href="lesson-{l["number"]:02d}.html">{esc(l["title"])}</a></li>' for l in data['lessons'])+'</ol><p><a href="tasks.html">Задачник</a> · <a href="review.html">Повторение</a> · <a href="interview.html">Мини-собеседование</a> · <a href="coverage.html">Реестр тем</a></p>'
     write_page('index.html','Твоя подготовка','home',listing)
     for l in data['lessons']:
         write_page(f'lesson-{l["number"]:02d}.html',l['title'],'lesson',''.join(static_topic(byid[id]) for id in l['topics']),l['id'])
     write_page('review.html','Повторение','review','<p>Повторение вопросов по теме и самооценке доступно с JavaScript.</p>')
+    write_page('tasks.html','Задачник','tasks','<p>Задачи из разных уроков с фильтрами и скрытыми решениями доступны с JavaScript. <a href="index.html?view=tasks">Открыть задачник</a>.</p>')
     write_page('interview.html','Мини-собеседование','interview','<p>Десять смешанных вопросов с уточнениями. Включите JavaScript.</p>')
     write_page('coverage.html','Реестр тем','coverage','<p>Машиночитаемый реестр: <a href="coverage.json">coverage.json</a>.</p>')
     write_page('progress.html','Твой прогресс','progress','<p>Экспорт и импорт прогресса доступны с JavaScript.</p>')

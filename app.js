@@ -14,13 +14,13 @@
   const Q = new Map(D.questions.map(q => [q.id, q]));
   const T = new Map(D.topics.map(t => [t.id, t]));
   const L = new Map(D.lessons.map(l => [l.id, l]));
-  const labels = {recall:'Вспомнить без подсказок',scenario:'Выбрать решение',compare:'Сравнить похожее',order:'Восстановить порядок',match:'Сопоставить пары',explain:'Объяснить просто',interview:'Мини-собеседование',experience:'История из опыта'};
+  const labels = {debug:'Найти и объяснить ошибку',code:'Написать небольшой фрагмент',recall:'Вспомнить без подсказок',scenario:'Выбрать решение',compare:'Сравнить похожее',order:'Восстановить порядок',match:'Сопоставить пары',explain:'Объяснить просто',interview:'Мини-собеседование',experience:'История из опыта'};
   const ratings = {none:'Без оценки',forgot:'Не помню',partial:'Частично',know:'Могу объяснить'};
   const emptyState = () => ({version:1,answers:{},ratings:{},read:{},work:{},updated:{},interview:null});
   let state = emptyState(), storageOK = true, lessonMode = 'theory', reviewIds = [], reviewLimit = 15;
   let mixedIds = [], currentLesson = null, toastTimer;
   const params = new URLSearchParams(location.search);
-  const view = ['home','lesson','review','interview','coverage','progress'].includes(params.get('view')) ? params.get('view') : 'home';
+  const view = ['home','lesson','tasks','review','interview','coverage','progress'].includes(params.get('view')) ? params.get('view') : 'home';
   const e = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const link = (v='home', id='', q='') => `index.html?view=${encodeURIComponent(v)}${id?'&lesson='+encodeURIComponent(id):''}${q?'&question='+encodeURIComponent(q):''}`;
   const searchTypes = {all:'Все',theory:'Теория',question:'Вопросы',example:'Примеры'};
@@ -164,7 +164,7 @@
   function answerText(blocks){return (blocks||[]).map(b=>[b.title,b.text,b.code,...(b.items||[])].filter(Boolean).join(' ')).join(' ');}
   function answerBlocks(blocks){return (blocks||[]).map(b=>`<section class="answer-block ${b.type==='example'?'answer-example':''}">${b.title?`<h4>${e(b.title)}</h4>`:''}${b.text?b.text.split(/\n\n+/).map(p=>`<p>${e(p)}</p>`).join(''):''}${b.code?`<pre><code>${e(b.code)}</code></pre>`:''}${b.items?.length?`<ol>${b.items.map(i=>`<li>${e(i)}</li>`).join('')}</ol>`:''}</section>`).join('');}
   function shell(content,title){
-    const nav=[['home','Уроки'],['review','Повторение'],['interview','Собеседование'],['progress','Прогресс'],['coverage','Реестр тем']];
+    const nav=[['home','Уроки'],['tasks','Задачник'],['review','Повторение'],['interview','Собеседование'],['progress','Прогресс'],['coverage','Реестр тем']];
     document.title=title+' · Собеседование';
     document.getElementById('app').innerHTML=`<div class="layout"><aside class="sidebar"><a class="brand" href="${link()}">собес /<br>можно объяснить<span>Frontend study room</span></a><nav class="main-nav" aria-label="Главная навигация">${nav.map(([v,n])=>`<a href="${link(v)}" ${view===v?'aria-current="page"':''}>${n}</a>`).join('')}</nav><nav class="lesson-nav" aria-label="Все уроки">${D.lessons.map(l=>`<a href="${link('lesson',l.id)}" ${currentLesson===l.id?'aria-current="page"':''}>${String(l.number).padStart(2,'0')} / ${e(l.title)}</a>`).join('')}</nav><div class="footer-note">Твоя заметка + документация.<br>Понять, затем вспомнить.<br><a href="${e(D.notion)}" target="_blank" rel="noopener">Открыть Notion ↗</a></div></aside><div class="content"><div class="topline"><span>ПОДГОТОВКА К СОБЕСЕДОВАНИЯМ</span><button class="global-search-open" data-action="open-search" aria-label="Поиск по всем урокам"><span aria-hidden="true">⌕</span><span class="search-open-label">Поиск по урокам</span><kbd>Ctrl K</kbd></button></div><main id="main" tabindex="-1">${content}</main><footer class="page-footer">Материал обновлён ${e(D.date)}. Ответы оцениваешь ты — по разобранному образцу. <a href="${link('progress')}">Сохранить копию прогресса</a></footer></div></div>`;
   }
@@ -172,7 +172,7 @@
   function progressStats(){const s=stats();return `<div class="stats"><div class="stat"><strong>${D.lessons.length}</strong><span>тематических уроков</span></div><div class="stat"><strong>${s.read}<span> / ${s.total}</span></strong><span>разделов прочитано</span></div><div class="stat"><strong>${s.know}<span> / ${s.questions}</span></strong><span>могу объяснить</span></div></div>`;}
   function home(){
     const next=D.lessons.find(l=>l.topics.some(id=>!state.read[id]))||D.lessons[0];
-    shell(`<section class="hero"><div class="hero-grid"><div><div class="eyebrow">Теория → вспомнить → объяснить</div><h1>Знать — это суметь<br>рассказать своими словами.</h1><p>Объяснения по шагам, разобранные примеры и вопросы без подсказок. Сначала понять тему, затем научиться рассказывать о ней.</p><div class="row"><a class="button primary" href="${link('lesson',next.id)}">${stats().read?'Продолжить':'Начать с первого урока'} →</a><a class="button" href="${link('review')}">Повторить вопросы</a></div></div><div class="orbit" aria-hidden="true">{ }</div></div></section>${progressStats()}<div class="row spread section-heading"><h2>Твоя программа</h2><span class="small muted">${D.topics.length} разделов · ${D.questions.length} вопросов</span></div><label for="search">Найти объяснение, вопрос или пример</label><input id="search" class="search" maxlength="200" type="search" placeholder="Например: satisfies, Promise, контекст…" autocomplete="off"><div id="search-results"></div><div class="lesson-grid section-heading" id="lesson-grid">${D.lessons.map(l=>{const s=stats(l.id);return `<a class="lesson-card" href="${link('lesson',l.id)}"><span class="card-number">УРОК ${String(l.number).padStart(2,'0')}</span><h3>${e(l.title)}</h3><p>${e(l.subtitle)}</p><div class="card-foot"><span>${l.topics.length} разделов · ${s.questions} вопросов</span><span>${s.know} могу объяснить ↗</span></div><div class="track" aria-label="Прочитано ${s.read} из ${s.total} разделов"><span style="width:${s.read/s.total*100}%"></span></div></a>`;}).join('')}</div><div class="panel"><h2>Как заниматься</h2><p>Прочитай объяснение и проследи пример по шагам. В конце раздела есть короткий ответ для собеседования. Затем попробуй ответить без подсказок и сверься с образцом.</p><p class="small muted">В списках проверяются все элементы: четыре комбинатора Promise, пять принципов SOLID и каждый пункт обозначенного учебного набора. Для сложной теории есть небольшие примеры кода.</p></div>`,'Твоя подготовка');
+    shell(`<section class="hero"><div class="hero-grid"><div><div class="eyebrow">Теория → вспомнить → объяснить</div><h1>Знать — это суметь<br>рассказать своими словами.</h1><p>Объяснения по шагам, разобранные примеры и вопросы без подсказок. Сначала понять тему, затем научиться рассказывать о ней.</p><div class="row"><a class="button primary" href="${link('lesson',next.id)}">${stats().read?'Продолжить':'Начать с первого урока'} →</a><a class="button" href="${link('tasks')}">Задачник →</a><a class="button" href="${link('review')}">Повторить вопросы</a></div></div><div class="orbit" aria-hidden="true">{ }</div></div></section>${progressStats()}<div class="row spread section-heading"><h2>Твоя программа</h2><span class="small muted">${D.topics.length} разделов · ${D.questions.length} вопросов</span></div><label for="search">Найти объяснение, вопрос или пример</label><input id="search" class="search" maxlength="200" type="search" placeholder="Например: satisfies, Promise, контекст…" autocomplete="off"><div id="search-results"></div><div class="lesson-grid section-heading" id="lesson-grid">${D.lessons.map(l=>{const s=stats(l.id);return `<a class="lesson-card" href="${link('lesson',l.id)}"><span class="card-number">УРОК ${String(l.number).padStart(2,'0')}</span><h3>${e(l.title)}</h3><p>${e(l.subtitle)}</p><div class="card-foot"><span>${l.topics.length} разделов · ${s.questions} вопросов</span><span>${s.know} могу объяснить ↗</span></div><div class="track" aria-label="Прочитано ${s.read} из ${s.total} разделов"><span style="width:${s.read/s.total*100}%"></span></div></a>`;}).join('')}</div><div class="panel"><h2>Как заниматься</h2><p>Прочитай объяснение и проследи пример по шагам. В конце раздела есть короткий ответ для собеседования. Затем попробуй ответить без подсказок и сверься с образцом.</p><p class="small muted">В списках проверяются все элементы: четыре комбинатора Promise, пять принципов SOLID и каждый пункт обозначенного учебного набора. Для сложной теории есть небольшие примеры кода.</p></div>`,'Твоя подготовка');
   }
   function readButton(t){return `<button data-action="read" data-topic="${t.id}" aria-pressed="${!!state.read[t.id]}" class="${state.read[t.id]?'lesson-done':''}">${state.read[t.id]?'✓ Прочитано':'Отметить прочитанным'}</button>`;}
   function theory(t,n){
@@ -210,7 +210,7 @@
       const options=shuffle(q.pairs.map((_,i)=>i));
       interactive=`<div class="match-grid">${q.pairs.map((pair,i)=>`<label for="${dom}-pair-${i}">${e(pair.name)}<select id="${dom}-pair-${i}" data-pair="${i}"><option value="-1">Выбери объяснение…</option>${options.map(n=>`<option value="${n}" ${state.work[q.id]?.matches?.[i]===n?'selected':''}>${e(q.pairs[n].detail)}</option>`).join('')}</select></label>`).join('')}</div><button data-action="check-match">Проверить пары</button><div class="feedback" role="status"></div>`;
     }
-    return `<article class="question" id="${dom}" data-q="${q.id}"><div class="row spread"><span class="pill">${e(labels[q.kind])}</span><span class="small muted" data-rating-label>${e(ratings[rating])}</span></div><h3>${e(q.prompt)}</h3><div class="small muted">${e(L.get(q.lesson).title)} / ${e(T.get(q.topic).title)}</div>${q.code?`<pre><code>${e(q.code)}</code></pre>`:''}${interactive}<label for="${dom}-answer" style="margin-top:15px">Твой ответ <span class="muted">— можно ответить вслух</span></label><textarea id="${dom}-answer" data-answer="${q.id}" placeholder="Сначала попробуй вспомнить…">${e(state.answers[q.id]||'')}</textarea><div class="row"><button class="primary" data-action="reveal" aria-expanded="false" aria-controls="${dom}-solution">Показать образец и свериться</button><a class="small" href="${link('lesson',q.lesson)}#topic-${q.topic}">Вернуться к теории</a></div><div class="answer" id="${dom}-solution" hidden><h3>${q.kind==='experience'?'Структура ответа':'Образец ответа'}</h3>${answerBlocks(q.answerBlocks)}${q.followups?.length?`<div class="followups"><h4>Уточнения интервьюера</h4>${q.followups.map((f,i)=>`<div class="followup"><p class="followup-question">${i+1}. ${e(f.question)}</p><details><summary>Показать ответ</summary>${answerBlocks(f.answerBlocks)}</details></div>`).join('')}</div>`:''}<div class="ratings" aria-label="Самооценка ответа">${['forgot','partial','know'].map(r=>`<button data-action="rate" data-rating="${r}" aria-pressed="${rating===r}">${ratings[r]}</button>`).join('')}</div>${sources(q.sources,q.notion)}</div></article>`;
+    return `<article class="question" id="${dom}" data-q="${q.id}"><div class="row spread"><span class="pill">${e(labels[q.kind])}</span><span class="small muted" data-rating-label>${e(ratings[rating])}</span></div>${q.exerciseTitle?`<p class="eyebrow">${e(q.exerciseTitle)}</p>`:""}<h3>${e(q.prompt)}</h3><div class="small muted">${e(L.get(q.lesson).title)} / ${e(T.get(q.topic).title)}</div>${q.code?`<pre><code>${e(q.code)}</code></pre>`:''}${interactive}<label for="${dom}-answer" style="margin-top:15px">${q.kind==='code'?'Твоё решение':'Твой ответ'} <span class="muted">${q.kind==='code'?'— код сохраняется; сверка по образцу':'— можно ответить вслух'}</span></label><textarea id="${dom}-answer" data-answer="${q.id}" ${q.kind==='code'?'class="code-answer" spellcheck="false" autocapitalize="off" autocomplete="off"':''} placeholder="${q.kind==='code'?'Напиши решение перед раскрытием образца…':'Сначала попробуй вспомнить…'}">${e(state.answers[q.id]||'')}</textarea><div class="row"><button class="primary" data-action="reveal" aria-expanded="false" aria-controls="${dom}-solution">Показать образец и свериться</button><a class="small" href="${link('lesson',q.lesson)}#topic-${q.topic}">Вернуться к теории</a></div><div class="answer" id="${dom}-solution" hidden><h3>${q.kind==='experience'?'Структура ответа':'Образец ответа'}</h3>${answerBlocks(q.answerBlocks)}${q.followups?.length?`<div class="followups"><h4>Уточнения интервьюера</h4>${q.followups.map((f,i)=>`<div class="followup"><p class="followup-question">${i+1}. ${e(f.question)}</p><details><summary>Показать ответ</summary>${answerBlocks(f.answerBlocks)}</details></div>`).join('')}</div>`:''}<div class="ratings" aria-label="Самооценка ответа">${['forgot','partial','know'].map(r=>`<button data-action="rate" data-rating="${r}" aria-pressed="${rating===r}">${ratings[r]}</button>`).join('')}</div>${sources(q.sources,q.notion)}</div></article>`;
   }
   function review(){
     shell(`<div class="eyebrow">Повторение</div><h1>Что хочется<br>объяснить увереннее?</h1><p class="muted">Выбери тему и самооценку. Все пункты наборов доступны отдельно, поэтому ничего не теряется при случайном выборе.</p><div class="filters"><label>Тема<select id="review-lesson"><option value="">Все уроки</option>${D.lessons.map(l=>`<option value="${l.id}">${e(l.title)}</option>`).join('')}</select></label><label>Самооценка<select id="review-rating"><option value="weak">Не помню + частично</option><option value="all">Все вопросы</option>${Object.entries(ratings).map(([id,n])=>`<option value="${id}">${n}</option>`).join('')}</select></label><button data-action="shuffle-review">Перемешать</button></div><p id="review-count" class="small muted" aria-live="polite"></p><div id="review-questions"></div><button id="review-more" data-action="more-review" hidden>Показать ещё 15</button>`,'Повторение');
@@ -225,6 +225,43 @@
     document.getElementById('review-count').textContent=`Найдено: ${reviewIds.length}. Показано: ${Math.min(reviewLimit,reviewIds.length)}.`;
     document.getElementById('review-questions').innerHTML=reviewIds.length?reviewIds.slice(0,reviewLimit).map(id=>exercise(Q.get(id),'review')).join(''):`<div class="empty">В этой выборке пока нет вопросов. Выбери «Все вопросы» или «Без оценки», чтобы начать.</div>`;
     document.getElementById('review-more').hidden=reviewLimit>=reviewIds.length;
+  }
+  const taskFormats={code:'Написать код',predict:'Предсказать результат',debug:'Найти ошибку',scenario:'Выбрать решение',order:'Восстановить порядок',match:'Сопоставить пары'};
+  let taskIds=[],taskLimit=10,lastRandomTask='';
+  function taskPool(){
+    const lesson=document.getElementById('tasks-lesson').value,format=document.getElementById('tasks-format').value;
+    const rating=document.getElementById('tasks-rating').value,query=normalize(document.getElementById('tasks-query').value.trim());
+    return D.questions.filter(q=>q.taskFormat&&(!lesson||q.lesson===lesson)&&(!format||q.taskFormat===format)&&
+      (rating==='all'||(rating==='weak'?['forgot','partial'].includes(questionRating(q.id)):questionRating(q.id)===rating))&&
+      (!query||normalize([q.prompt,q.code,q.exerciseTitle,T.get(q.topic).title].filter(Boolean).join(' ')).includes(query)));
+  }
+  function tasks(){
+    const total=D.questions.filter(q=>q.taskFormat).length;
+    shell(`<div class="eyebrow">Только задачи · ${total}</div><h1>Задачник</h1><p class="muted">Код, вывод, ошибки и ситуации из разных уроков. Сначала попробуй решить: все решения и ответы на уточнения скрыты. Черновики и оценки общие с уроками; к теории можно перейти из любой задачи.</p><div class="filters"><label>Тема<select id="tasks-lesson"><option value="">Все уроки</option>${D.lessons.map(l=>`<option value="${l.id}">${e(l.title)}</option>`).join('')}</select></label><label>Формат<select id="tasks-format"><option value="">Все форматы</option>${Object.entries(taskFormats).map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select></label><label>Самооценка<select id="tasks-rating"><option value="all">Все задачи</option><option value="weak">Не помню + частично</option>${Object.entries(ratings).map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select></label></div><label for="tasks-query">Найти задачу</label><input id="tasks-query" class="search" type="search" maxlength="200" placeholder="Например: callback, iframe, ссылка…"><div class="row task-actions"><button data-action="tasks-all">Все подходящие</button><button data-action="tasks-random">Случайная задача</button><button class="primary" data-action="tasks-five">Подборка из 5</button></div><p class="small muted" id="tasks-count" role="status"></p><div id="task-questions"></div><button data-action="tasks-more" id="tasks-more" hidden>Показать ещё 10</button>`,'Задачник');
+    chooseTasks();
+    const id=params.get('question');if(Q.get(id)?.taskFormat){taskIds=[id];taskLimit=1;renderTasks();}
+  }
+  function chooseTasks(mode='all'){
+    const pool=taskPool();let selected=pool;
+    if(mode==='random'){
+      const candidates=pool.filter(q=>q.id!==lastRandomTask);
+      selected=shuffle(candidates.length?candidates:pool).slice(0,1);
+      if(selected.length)lastRandomTask=selected[0].id;
+    }
+    if(mode==='five'){
+      selected=[];
+      for(const q of shuffle(pool))if(!selected.some(p=>p.lesson===q.lesson)){selected.push(q);if(selected.length===5)break;}
+      selected.push(...shuffle(pool.filter(q=>!selected.some(p=>p.id===q.id))).slice(0,5-selected.length));
+    }
+    taskIds=selected.map(q=>q.id);taskLimit=mode==='all'?10:5;renderTasks();
+    const empty=!pool.length;document.querySelectorAll('[data-action="tasks-random"],[data-action="tasks-five"]').forEach(b=>b.disabled=empty);
+  }
+  function renderTasks(append=false){
+    const shown=taskIds.slice(0,taskLimit),box=document.getElementById('task-questions');
+    document.getElementById('tasks-count').textContent=`По фильтрам: ${taskPool().length}. В подборке: ${taskIds.length}. Показано: ${shown.length}.`;
+    if(append)box.insertAdjacentHTML('beforeend',shown.slice(box.querySelectorAll('.question').length).map(id=>exercise(Q.get(id),'task')).join(''));
+    else box.innerHTML=shown.length?shown.map(id=>exercise(Q.get(id),'task')).join(''):'<div class="empty">Задач по этим фильтрам нет. Выбери другую тему, формат или самооценку.</div>';
+    document.getElementById('tasks-more').hidden=taskLimit>=taskIds.length;
   }
   function newInterview(){
     const lessonOrder=shuffle(D.lessons);let ids=[];
@@ -268,11 +305,13 @@
     if(el.id==='search')search(el.value);
     if(el.id==='global-search-input'){searchState.global.query=el.value;searchState.global.limit=12;renderSearch('global');}
     if(el.id==='coverage-search')renderCoverage(el.value);
+    if(el.id==='tasks-query')chooseTasks();
   });
   document.addEventListener('change',async event=>{
     const el=event.target;
     if(el.id==='topic-filter')renderLessonContent(el.value);
     if(el.id==='review-lesson'||el.id==='review-rating')reviewSelection();
+    if(['tasks-lesson','tasks-format','tasks-rating'].includes(el.id))chooseTasks();
     if(el.matches('[data-pair]')){const card=el.closest('[data-q]');state.work[card.dataset.q]={matches:[...card.querySelectorAll('[data-pair]')].map(s=>Number(s.value))};save();}
     if(el.id==='import-file'&&el.files.length){
       try{
@@ -323,6 +362,10 @@
     }
     if(action==='shuffle-review')reviewSelection();
     if(action==='more-review'){reviewLimit+=15;renderReview();}
+    if(action==='tasks-all')chooseTasks();
+    if(action==='tasks-random')chooseTasks('random');
+    if(action==='tasks-five')chooseTasks('five');
+    if(action==='tasks-more'){taskLimit+=10;renderTasks(true);}
     if(action==='new-interview')newInterview();
     if(action==='interview-prev'){state.interview.index=Math.max(0,state.interview.index-1);save();renderInterview();}
     if(action==='interview-next'||action==='interview-skip'){state.interview.index++;save();renderInterview();document.getElementById('interview-run').scrollIntoView();}
@@ -336,6 +379,6 @@
     if(event.key==='Escape'&&document.getElementById('global-search-dialog')?.open){event.preventDefault();document.getElementById('global-search-dialog').close();}
     else if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openSearch();}
   });
-  ({home,lesson,review,interview,coverage,progress}[view])();
+  ({home,lesson,tasks,review,interview,coverage,progress}[view])();
   if(location.hash.startsWith('#topic-')||location.hash.startsWith('#example-'))setTimeout(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView(),50);
 })();
