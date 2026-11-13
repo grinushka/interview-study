@@ -17,7 +17,7 @@ with sync_playwright() as p:
     assert page.locator('.search-topic mark').count()>0
     # Repeated questions are grouped, not shown as a flat list of duplicates.
     assert page.locator('.search-topic').count()<page.locator('.search-result').count()
-    page.locator('#search').fill('прочитают')
+    page.locator('#search').fill('24 часа')
     assert 'Дедупликация' in page.locator('#search-results').inner_text()
     page.locator('#search-results [data-search-type=example]').first.click()
     page.wait_for_selector('.theory')

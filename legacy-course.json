@@ -1,0 +1,1864 @@
+{
+  "topics": [
+    "navigation",
+    "pipeline",
+    "cdn",
+    "message",
+    "methods",
+    "statuses",
+    "caching",
+    "rest",
+    "api-styles",
+    "pagination",
+    "tls",
+    "cors",
+    "cookies",
+    "web-storage",
+    "auth",
+    "vulnerabilities",
+    "workers",
+    "broadcast",
+    "cross-context",
+    "dedup",
+    "realtime",
+    "map-set",
+    "weak",
+    "gc",
+    "proxy",
+    "arrays",
+    "cloning",
+    "closures",
+    "promise-basics",
+    "promise-combinators",
+    "event-loop",
+    "timers",
+    "fetch-streams",
+    "render-commit",
+    "keys-vdom",
+    "fiber",
+    "hooks-list",
+    "effects-purpose",
+    "effect-deps",
+    "effect-timing",
+    "context",
+    "state-design",
+    "flux-redux",
+    "query-libs",
+    "forms",
+    "hoc-router",
+    "suspense-lazy",
+    "react-versions",
+    "ts-basics",
+    "never",
+    "assertions",
+    "narrowing",
+    "utilities",
+    "omit-exclude",
+    "generics-variance",
+    "react-performance",
+    "vitals",
+    "bundle",
+    "build-tools",
+    "observability",
+    "render-strategies",
+    "hydration",
+    "seo",
+    "specificity",
+    "styling",
+    "scripts",
+    "images",
+    "svg",
+    "internationalization",
+    "solid",
+    "kiss-dry-yagni",
+    "design-patterns",
+    "architecture-boundaries",
+    "module-federation",
+    "http-versions",
+    "architecture-methods",
+    "experience-story"
+  ],
+  "lessons": [
+    "url",
+    "http",
+    "security",
+    "communication",
+    "javascript",
+    "async",
+    "react-render",
+    "react-effects",
+    "react-state",
+    "react-app",
+    "typescript",
+    "performance",
+    "rendering",
+    "html-css",
+    "architecture"
+  ],
+  "questions": [
+    {
+      "id": "navigation-main",
+      "topic": "navigation",
+      "lesson": "url",
+      "prompt": "Опиши путь от ввода URL до первого отображения страницы. Какие этапы могут быть пропущены?"
+    },
+    {
+      "id": "pipeline-main",
+      "topic": "pipeline",
+      "lesson": "url",
+      "prompt": "Восстанови порядок стадий после получения HTML и объясни назначение каждой."
+    },
+    {
+      "id": "cdn-main",
+      "topic": "cdn",
+      "lesson": "url",
+      "prompt": "Статика загружается медленно из другой страны. Что даст CDN и какие данные нельзя бездумно кэшировать?"
+    },
+    {
+      "id": "message-main",
+      "topic": "message",
+      "lesson": "http",
+      "prompt": "Из каких частей состоят HTTP-запрос и ответ? Сравни query и body."
+    },
+    {
+      "id": "methods-main",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Перечисли изучаемые HTTP-методы, назначение и идемпотентность каждого."
+    },
+    {
+      "id": "methods-item-1",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «GET» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-2",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «HEAD» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-3",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «POST» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-4",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «PUT» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-5",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «PATCH» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-6",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «DELETE» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "methods-item-7",
+      "topic": "methods",
+      "lesson": "http",
+      "prompt": "Объясни «OPTIONS» в теме «Методы HTTP и идемпотентность». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "statuses-main",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Назови пять классов HTTP-статусов и объясни разницу между 401, 403, 404, 500 и 503."
+    },
+    {
+      "id": "statuses-item-1",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Объясни «1xx» в теме «Классы статусов HTTP». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "statuses-item-2",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Объясни «2xx» в теме «Классы статусов HTTP». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "statuses-item-3",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Объясни «3xx» в теме «Классы статусов HTTP». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "statuses-item-4",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Объясни «4xx» в теме «Классы статусов HTTP». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "statuses-item-5",
+      "topic": "statuses",
+      "lesson": "http",
+      "prompt": "Объясни «5xx» в теме «Классы статусов HTTP». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "caching-main",
+      "topic": "caching",
+      "lesson": "http",
+      "prompt": "Ресурс уже есть в кэше. Объясни варианты без запроса, с 304 и с новым 200; зачем здесь HEAD?"
+    },
+    {
+      "id": "rest-main",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Перечисли ограничения REST и объясни каждое на примере API."
+    },
+    {
+      "id": "rest-item-1",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Client–server» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "rest-item-2",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Stateless» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "rest-item-3",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Cacheable» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "rest-item-4",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Uniform interface» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "rest-item-5",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Layered system» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "rest-item-6",
+      "topic": "rest",
+      "lesson": "http",
+      "prompt": "Объясни «Code on demand — необязательно» в теме «REST и RESTful API». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "api-styles-main",
+      "topic": "api-styles",
+      "lesson": "http",
+      "prompt": "Сравни REST, SOAP, GraphQL и gRPC по контракту, форме запроса и ограничениям браузера."
+    },
+    {
+      "id": "api-styles-item-1",
+      "topic": "api-styles",
+      "lesson": "http",
+      "prompt": "Объясни «REST» в теме «REST, SOAP, GraphQL и gRPC». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "api-styles-item-2",
+      "topic": "api-styles",
+      "lesson": "http",
+      "prompt": "Объясни «SOAP» в теме «REST, SOAP, GraphQL и gRPC». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "api-styles-item-3",
+      "topic": "api-styles",
+      "lesson": "http",
+      "prompt": "Объясни «GraphQL» в теме «REST, SOAP, GraphQL и gRPC». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "api-styles-item-4",
+      "topic": "api-styles",
+      "lesson": "http",
+      "prompt": "Объясни «gRPC» в теме «REST, SOAP, GraphQL и gRPC». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "pagination-main",
+      "topic": "pagination",
+      "lesson": "http",
+      "prompt": "Для бесконечной ленты выбери pagination и объясни, что произойдёт при новых записях."
+    },
+    {
+      "id": "tls-main",
+      "topic": "tls",
+      "lesson": "security",
+      "prompt": "Объясни простыми словами три задачи TLS и роль сертификата."
+    },
+    {
+      "id": "cors-main",
+      "topic": "cors",
+      "lesson": "security",
+      "prompt": "fetch работает в curl, но браузер не даёт прочитать ответ. Объясни проверку CORS и порядок preflight."
+    },
+    {
+      "id": "cookies-main",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Перечисли атрибуты cookies и объясни действие каждого. Какие выберешь для session cookie?"
+    },
+    {
+      "id": "cookies-item-1",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «Expires / Max-Age» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cookies-item-2",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «Domain / Path» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cookies-item-3",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «Secure» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cookies-item-4",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «HttpOnly» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cookies-item-5",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «SameSite» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cookies-item-6",
+      "topic": "cookies",
+      "lesson": "security",
+      "prompt": "Объясни «Session / persistent» в теме «Cookies: назначение и атрибуты». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "web-storage-main",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Сравни пять браузерных хранилищ и выбери варианты для настроек, черновика вкладки и offline-данных."
+    },
+    {
+      "id": "web-storage-item-1",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Объясни «Cookies» в теме «Хранилища браузера». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "web-storage-item-2",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Объясни «localStorage» в теме «Хранилища браузера». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "web-storage-item-3",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Объясни «sessionStorage» в теме «Хранилища браузера». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "web-storage-item-4",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Объясни «IndexedDB» в теме «Хранилища браузера». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "web-storage-item-5",
+      "topic": "web-storage",
+      "lesson": "security",
+      "prompt": "Объясни «Cache API» в теме «Хранилища браузера». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "auth-main",
+      "topic": "auth",
+      "lesson": "security",
+      "prompt": "Пользователь скрыт от кнопки удаления, но отправляет DELETE вручную. Где должна сработать проверка?"
+    },
+    {
+      "id": "vulnerabilities-main",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Сопоставь угрозы с мерами защиты и объясни, почему одной меры недостаточно."
+    },
+    {
+      "id": "vulnerabilities-item-1",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Объясни «HTML injection / XSS» в теме «Уязвимости и защита». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vulnerabilities-item-2",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Объясни «CSP» в теме «Уязвимости и защита». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vulnerabilities-item-3",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Объясни «CSRF» в теме «Уязвимости и защита». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vulnerabilities-item-4",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Объясни «Broken access control» в теме «Уязвимости и защита». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vulnerabilities-item-5",
+      "topic": "vulnerabilities",
+      "lesson": "security",
+      "prompt": "Объясни «Компоненты и мониторинг» в теме «Уязвимости и защита». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "workers-main",
+      "topic": "workers",
+      "lesson": "communication",
+      "prompt": "Сравни Web Worker, SharedWorker и Service Worker: задачи, жизненный цикл, доступ к DOM."
+    },
+    {
+      "id": "workers-item-1",
+      "topic": "workers",
+      "lesson": "communication",
+      "prompt": "Объясни «Dedicated Web Worker» в теме «Web Worker, SharedWorker и Service Worker». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "workers-item-2",
+      "topic": "workers",
+      "lesson": "communication",
+      "prompt": "Объясни «SharedWorker» в теме «Web Worker, SharedWorker и Service Worker». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "workers-item-3",
+      "topic": "workers",
+      "lesson": "communication",
+      "prompt": "Объясни «Service Worker» в теме «Web Worker, SharedWorker и Service Worker». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "broadcast-main",
+      "topic": "broadcast",
+      "lesson": "communication",
+      "prompt": "Объясни, как использовать BroadcastChannel для logout во всех вкладках и что увидит вкладка, открытая позже."
+    },
+    {
+      "id": "cross-context-main",
+      "topic": "cross-context",
+      "lesson": "communication",
+      "prompt": "Нужно синхронизировать тему в двух вкладках и получить результат от iframe другого origin. Выбери API для каждого случая."
+    },
+    {
+      "id": "dedup-main",
+      "topic": "dedup",
+      "lesson": "communication",
+      "prompt": "Две вкладки одновременно получили одно уведомление. Опиши протокол дедупликации и поведение при падении вкладки."
+    },
+    {
+      "id": "realtime-main",
+      "topic": "realtime",
+      "lesson": "communication",
+      "prompt": "Выбери транспорт для чата, серверного прогресса задачи и системы с ограниченной инфраструктурой."
+    },
+    {
+      "id": "realtime-item-1",
+      "topic": "realtime",
+      "lesson": "communication",
+      "prompt": "Объясни «WebSocket» в теме «WebSocket, SSE и long polling». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "realtime-item-2",
+      "topic": "realtime",
+      "lesson": "communication",
+      "prompt": "Объясни «SSE / EventSource» в теме «WebSocket, SSE и long polling». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "realtime-item-3",
+      "topic": "realtime",
+      "lesson": "communication",
+      "prompt": "Объясни «Long polling» в теме «WebSocket, SSE и long polling». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "map-set-main",
+      "topic": "map-set",
+      "lesson": "javascript",
+      "prompt": "Чем отличаются Map и Set? Как получить третий добавленный элемент Set и почему set[2] не подходит?"
+    },
+    {
+      "id": "map-set-item-1",
+      "topic": "map-set",
+      "lesson": "javascript",
+      "prompt": "Объясни «Map» в теме «Map и Set». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "map-set-item-2",
+      "topic": "map-set",
+      "lesson": "javascript",
+      "prompt": "Объясни «Set» в теме «Map и Set». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "map-set-item-3",
+      "topic": "map-set",
+      "lesson": "javascript",
+      "prompt": "Объясни «Равенство» в теме «Map и Set». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "weak-main",
+      "topic": "weak",
+      "lesson": "javascript",
+      "prompt": "Сравни WeakMap/WeakSet с Map/Set и объясни связь со сборкой мусора."
+    },
+    {
+      "id": "weak-item-1",
+      "topic": "weak",
+      "lesson": "javascript",
+      "prompt": "Объясни «WeakMap» в теме «WeakMap и WeakSet». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "weak-item-2",
+      "topic": "weak",
+      "lesson": "javascript",
+      "prompt": "Объясни «WeakSet» в теме «WeakMap и WeakSet». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "weak-item-3",
+      "topic": "weak",
+      "lesson": "javascript",
+      "prompt": "Объясни «Наблюдаемость» в теме «WeakMap и WeakSet». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "gc-main",
+      "topic": "gc",
+      "lesson": "javascript",
+      "prompt": "Объясни GC простыми словами: когда цикл объектов можно собрать и почему забытая подписка может удерживать память?"
+    },
+    {
+      "id": "proxy-main",
+      "topic": "proxy",
+      "lesson": "javascript",
+      "prompt": "Объясни проксирование объекта и ограничения Proxy. Какие операции перехватят get и set?"
+    },
+    {
+      "id": "arrays-main",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Назови методы для преобразования, поиска, проверки и изменения массива; какие из них мутируют исходник?"
+    },
+    {
+      "id": "arrays-item-1",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «map» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-2",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «filter» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-3",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «reduce» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-4",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «reduceRight» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-5",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «flatMap» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-6",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «find» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-7",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «findIndex» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-8",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «includes» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-9",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «indexOf / lastIndexOf» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-10",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «some / every» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-11",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «push / pop» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-12",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «shift / unshift» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-13",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «splice» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-14",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «sort / reverse» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-15",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «fill» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-16",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «slice / concat» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-17",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «join» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "arrays-item-18",
+      "topic": "arrays",
+      "lesson": "javascript",
+      "prompt": "Объясни «toSorted / toReversed / toSpliced / with» в теме «Методы массивов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "cloning-main",
+      "topic": "cloning",
+      "lesson": "javascript",
+      "prompt": "Сравни spread, JSON.parse/stringify и structuredClone для объекта с Date, функцией и вложенным объектом."
+    },
+    {
+      "id": "closures-main",
+      "topic": "closures",
+      "lesson": "javascript",
+      "prompt": "Объясни замыкание на примере счётчика, затем сравни call, apply, bind и каррирование."
+    },
+    {
+      "id": "closures-item-1",
+      "topic": "closures",
+      "lesson": "javascript",
+      "prompt": "Объясни «Замыкание» в теме «Замыкания, call/apply/bind». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "closures-item-2",
+      "topic": "closures",
+      "lesson": "javascript",
+      "prompt": "Объясни «call / apply» в теме «Замыкания, call/apply/bind». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "closures-item-3",
+      "topic": "closures",
+      "lesson": "javascript",
+      "prompt": "Объясни «bind» в теме «Замыкания, call/apply/bind». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "closures-item-4",
+      "topic": "closures",
+      "lesson": "javascript",
+      "prompt": "Объясни «Каррирование» в теме «Замыкания, call/apply/bind». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-basics-main",
+      "topic": "promise-basics",
+      "lesson": "async",
+      "prompt": "Объясни состояния Promise, цепочки и работу await. Что происходит синхронно, а что позже?"
+    },
+    {
+      "id": "promise-basics-item-1",
+      "topic": "promise-basics",
+      "lesson": "async",
+      "prompt": "Объясни «then / catch / finally» в теме «Promise и async/await». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-basics-item-2",
+      "topic": "promise-basics",
+      "lesson": "async",
+      "prompt": "Объясни «async / await» в теме «Promise и async/await». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-basics-item-3",
+      "topic": "promise-basics",
+      "lesson": "async",
+      "prompt": "Объясни «Запуск и отмена» в теме «Promise и async/await». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-basics-item-4",
+      "topic": "promise-basics",
+      "lesson": "async",
+      "prompt": "Объясни «Дополнительные static методы» в теме «Promise и async/await». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-combinators-main",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Назови все четыре комбинатора и сравни условия завершения, ошибки и пустой вход."
+    },
+    {
+      "id": "promise-combinators-item-1",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Объясни «Promise.all» в теме «Четыре комбинатора Promise». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-combinators-item-2",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Объясни «Promise.allSettled» в теме «Четыре комбинатора Promise». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-combinators-item-3",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Объясни «Promise.any» в теме «Четыре комбинатора Promise». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "promise-combinators-item-4",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Объясни «Promise.race» в теме «Четыре комбинатора Promise». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "event-loop-main",
+      "topic": "event-loop",
+      "lesson": "async",
+      "prompt": "Восстанови порядок вывода A, B, C, D, E и объясни очереди."
+    },
+    {
+      "id": "timers-main",
+      "topic": "timers",
+      "lesson": "async",
+      "prompt": "Сравни timeout и interval. Почему interval в React может видеть старый state и как это исправить?"
+    },
+    {
+      "id": "timers-item-1",
+      "topic": "timers",
+      "lesson": "async",
+      "prompt": "Объясни «setTimeout» в теме «setTimeout, setInterval и stale closure». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "timers-item-2",
+      "topic": "timers",
+      "lesson": "async",
+      "prompt": "Объясни «setInterval» в теме «setTimeout, setInterval и stale closure». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "timers-item-3",
+      "topic": "timers",
+      "lesson": "async",
+      "prompt": "Объясни «React и замыкание» в теме «setTimeout, setInterval и stale closure». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "fetch-streams-main",
+      "topic": "fetch-streams",
+      "lesson": "async",
+      "prompt": "Большой текстовый ответ нужно показывать постепенно. Опиши обработку chunks, кодировки, ошибок и отмены."
+    },
+    {
+      "id": "render-commit-main",
+      "topic": "render-commit",
+      "lesson": "react-render",
+      "prompt": "Восстанови путь обновления React от setState до commit и объясни жизненный цикл."
+    },
+    {
+      "id": "keys-vdom-main",
+      "topic": "keys-vdom",
+      "lesson": "react-render",
+      "prompt": "В списке редактируемых строк поменяли порядок. Объясни, почему key=index может перенести ввод к другой строке."
+    },
+    {
+      "id": "fiber-main",
+      "topic": "fiber",
+      "lesson": "react-render",
+      "prompt": "Объясни Fiber и concurrent rendering простыми словами: какую проблему решают и что можно прервать?"
+    },
+    {
+      "id": "hooks-list-main",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Перечисли хуки учебного набора по группам и объясни назначение каждого."
+    },
+    {
+      "id": "hooks-list-item-1",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useState» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-2",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useReducer» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-3",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useContext» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-4",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useRef» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-5",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useEffect» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-6",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useLayoutEffect» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-7",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useMemo» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-8",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useCallback» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-9",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useTransition» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-10",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useDeferredValue» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-11",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useId» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-12",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useImperativeHandle» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-13",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useSyncExternalStore» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-14",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useDebugValue» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-15",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useInsertionEffect» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-16",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useActionState» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-17",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useOptimistic» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hooks-list-item-18",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Объясни «useEffectEvent» в теме «Хуки: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "effects-purpose-main",
+      "topic": "effects-purpose",
+      "lesson": "react-effects",
+      "prompt": "Для чего использовать useEffect, кроме запросов? Назови несколько внешних систем и cleanup для каждой."
+    },
+    {
+      "id": "effect-deps-main",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Сравни отсутствие массива, [] и [object]. Объясни поведение при мутации object.name без смены ссылки."
+    },
+    {
+      "id": "effect-deps-item-1",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Объясни «Без массива» в теме «Массив зависимостей эффектов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "effect-deps-item-2",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Объясни «Пустой массив []» в теме «Массив зависимостей эффектов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "effect-deps-item-3",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Объясни «[a, b]» в теме «Массив зависимостей эффектов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "effect-deps-item-4",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Объясни «Объект с той же ссылкой» в теме «Массив зависимостей эффектов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "effect-timing-main",
+      "topic": "effect-timing",
+      "lesson": "react-effects",
+      "prompt": "Tooltip сначала прыгает из неверной позиции в правильную. Какой эффект выбрать и какой у этого компромисс?"
+    },
+    {
+      "id": "context-main",
+      "topic": "context",
+      "lesson": "react-state",
+      "prompt": "В один context положили theme, user и каждое нажатие клавиши. Кто обновляется и как разделить данные?"
+    },
+    {
+      "id": "state-design-main",
+      "topic": "state-design",
+      "lesson": "react-state",
+      "prompt": "Как организация состояния влияет на производительность? Предложи структуру для поиска и тяжёлого списка."
+    },
+    {
+      "id": "flux-redux-main",
+      "topic": "flux-redux",
+      "lesson": "react-state",
+      "prompt": "Восстанови поток Redux и объясни место middleware. Какие проблемы решает общий store?"
+    },
+    {
+      "id": "flux-redux-item-1",
+      "topic": "flux-redux",
+      "lesson": "react-state",
+      "prompt": "Объясни «Action» в теме «Flux, Redux и middleware». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "flux-redux-item-2",
+      "topic": "flux-redux",
+      "lesson": "react-state",
+      "prompt": "Объясни «Reducer» в теме «Flux, Redux и middleware». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "flux-redux-item-3",
+      "topic": "flux-redux",
+      "lesson": "react-state",
+      "prompt": "Объясни «Store и selectors» в теме «Flux, Redux и middleware». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "flux-redux-item-4",
+      "topic": "flux-redux",
+      "lesson": "react-state",
+      "prompt": "Объясни «Middleware» в теме «Flux, Redux и middleware». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "query-libs-main",
+      "topic": "query-libs",
+      "lesson": "react-state",
+      "prompt": "Сравни Redux, RTK Query, TanStack Query, SWR и MobX. Что выберешь для кэша API, а что для сложного клиентского состояния?"
+    },
+    {
+      "id": "query-libs-item-1",
+      "topic": "query-libs",
+      "lesson": "react-state",
+      "prompt": "Объясни «RTK Query» в теме «RTK Query, TanStack Query, SWR и MobX». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "query-libs-item-2",
+      "topic": "query-libs",
+      "lesson": "react-state",
+      "prompt": "Объясни «TanStack Query» в теме «RTK Query, TanStack Query, SWR и MobX». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "query-libs-item-3",
+      "topic": "query-libs",
+      "lesson": "react-state",
+      "prompt": "Объясни «SWR» в теме «RTK Query, TanStack Query, SWR и MobX». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "query-libs-item-4",
+      "topic": "query-libs",
+      "lesson": "react-state",
+      "prompt": "Объясни «MobX» в теме «RTK Query, TanStack Query, SWR и MobX». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "forms-main",
+      "topic": "forms",
+      "lesson": "react-app",
+      "prompt": "Сравни controlled и uncontrolled формы и объясни разницу value/defaultValue."
+    },
+    {
+      "id": "hoc-router-main",
+      "topic": "hoc-router",
+      "lesson": "react-app",
+      "prompt": "Объясни различия HOC, custom hook и Router. Как работает навигация SPA без полной перезагрузки?"
+    },
+    {
+      "id": "suspense-lazy-main",
+      "topic": "suspense-lazy",
+      "lesson": "react-app",
+      "prompt": "Почему Suspense не показывает fallback для любого fetch в useEffect? Как разделить ожидание и ошибку?"
+    },
+    {
+      "id": "react-versions-main",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "С какими версиями React ты работала? Расскажи об опыте миграции или о том, как бы её организовала."
+    },
+    {
+      "id": "react-versions-item-1",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «React 18» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-versions-item-2",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «React 19» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-versions-item-3",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «React 19.2» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-versions-item-4",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «React 19.3» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-versions-item-5",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «Миграция» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-versions-item-6",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Объясни «Рассказ» в теме «Версии React и миграции». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "ts-basics-main",
+      "topic": "ts-basics",
+      "lesson": "typescript",
+      "prompt": "Сравни interface и type; объясни union, intersection и границу compile-time проверки."
+    },
+    {
+      "id": "never-main",
+      "topic": "never",
+      "lesson": "typescript",
+      "prompt": "Для чего нужен never? Как он помогает заметить новый необработанный вариант union?"
+    },
+    {
+      "id": "assertions-main",
+      "topic": "assertions",
+      "lesson": "typescript",
+      "prompt": "Сравни : Type, as Type, satisfies Type и as const. Почему assertion не защищает от неверного ответа API?"
+    },
+    {
+      "id": "narrowing-main",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Перечисли встроенные способы narrowing и пользовательские Type Guards. Где truthiness теряет допустимые значения?"
+    },
+    {
+      "id": "narrowing-item-1",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Объясни «typeof» в теме «Narrowing и Type Guards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "narrowing-item-2",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Объясни «in / instanceof» в теме «Narrowing и Type Guards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "narrowing-item-3",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Объясни «Equality и truthiness» в теме «Narrowing и Type Guards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "narrowing-item-4",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Объясни «Discriminated union» в теме «Narrowing и Type Guards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "narrowing-item-5",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Объясни «Predicate / assertion function» в теме «Narrowing и Type Guards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-main",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Перечисли Utility Types учебного набора и объясни каждый на небольшом типе."
+    },
+    {
+      "id": "utilities-item-1",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Partial<T>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-2",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Required<T>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-3",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Readonly<T>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-4",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Pick<T, K>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-5",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Omit<T, K>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-6",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Record<K, V>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-7",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Exclude<T, U>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-8",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Extract<T, U>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-9",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «NonNullable<T>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-10",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Parameters<F>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-11",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «ReturnType<F>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "utilities-item-12",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Объясни «Awaited<T>» в теме «Utility Types: явный учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "omit-exclude-main",
+      "topic": "omit-exclude",
+      "lesson": "typescript",
+      "prompt": "Чем Omit отличается от Exclude? Выведи результаты примеров и объясни распределение Exclude по union."
+    },
+    {
+      "id": "generics-variance-main",
+      "topic": "generics-variance",
+      "lesson": "typescript",
+      "prompt": "Объясни generics и сравни covariance, contravariance, invariance и bivariance на Animal/Dog."
+    },
+    {
+      "id": "generics-variance-item-1",
+      "topic": "generics-variance",
+      "lesson": "typescript",
+      "prompt": "Объясни «Generic constraint» в теме «Generics и variance». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "generics-variance-item-2",
+      "topic": "generics-variance",
+      "lesson": "typescript",
+      "prompt": "Объясни «Covariance» в теме «Generics и variance». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "generics-variance-item-3",
+      "topic": "generics-variance",
+      "lesson": "typescript",
+      "prompt": "Объясни «Contravariance» в теме «Generics и variance». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "generics-variance-item-4",
+      "topic": "generics-variance",
+      "lesson": "typescript",
+      "prompt": "Объясни «Invariance / bivariance» в теме «Generics и variance». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "react-performance-main",
+      "topic": "react-performance",
+      "lesson": "performance",
+      "prompt": "Ввод тормозит при фильтрации большого списка. Как выявить причину, выбрать улучшение и проверить результат?"
+    },
+    {
+      "id": "vitals-main",
+      "topic": "vitals",
+      "lesson": "performance",
+      "prompt": "Назови все три Core Web Vitals, что они измеряют и что улучшать при плохом значении каждого."
+    },
+    {
+      "id": "vitals-item-1",
+      "topic": "vitals",
+      "lesson": "performance",
+      "prompt": "Объясни «LCP» в теме «Core Web Vitals». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vitals-item-2",
+      "topic": "vitals",
+      "lesson": "performance",
+      "prompt": "Объясни «INP» в теме «Core Web Vitals». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vitals-item-3",
+      "topic": "vitals",
+      "lesson": "performance",
+      "prompt": "Объясни «CLS» в теме «Core Web Vitals». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "vitals-item-4",
+      "topic": "vitals",
+      "lesson": "performance",
+      "prompt": "Объясни «Оценка» в теме «Core Web Vitals». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "bundle-main",
+      "topic": "bundle",
+      "lesson": "performance",
+      "prompt": "Bundle вырос вдвое. Какие измерения и меры выберешь до добавления memo во все компоненты?"
+    },
+    {
+      "id": "bundle-item-1",
+      "topic": "bundle",
+      "lesson": "performance",
+      "prompt": "Объясни «Code splitting» в теме «Bundle и загрузка ресурсов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "bundle-item-2",
+      "topic": "bundle",
+      "lesson": "performance",
+      "prompt": "Объясни «Tree shaking» в теме «Bundle и загрузка ресурсов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "bundle-item-3",
+      "topic": "bundle",
+      "lesson": "performance",
+      "prompt": "Объясни «Compression и caching» в теме «Bundle и загрузка ресурсов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "bundle-item-4",
+      "topic": "bundle",
+      "lesson": "performance",
+      "prompt": "Объясни «Preload / prefetch / lazy» в теме «Bundle и загрузка ресурсов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "build-tools-main",
+      "topic": "build-tools",
+      "lesson": "performance",
+      "prompt": "Сравни compiler/transpiler и bundler. Где в сборке TS происходит проверка типов?"
+    },
+    {
+      "id": "observability-main",
+      "topic": "observability",
+      "lesson": "performance",
+      "prompt": "Сопоставь OpenTelemetry, Sentry, Prometheus и Grafana с задачами расследования ошибки и медленного запроса."
+    },
+    {
+      "id": "observability-item-1",
+      "topic": "observability",
+      "lesson": "performance",
+      "prompt": "Объясни «OpenTelemetry» в теме «Ошибки, traces, metrics и dashboards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "observability-item-2",
+      "topic": "observability",
+      "lesson": "performance",
+      "prompt": "Объясни «Sentry» в теме «Ошибки, traces, metrics и dashboards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "observability-item-3",
+      "topic": "observability",
+      "lesson": "performance",
+      "prompt": "Объясни «Prometheus» в теме «Ошибки, traces, metrics и dashboards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "observability-item-4",
+      "topic": "observability",
+      "lesson": "performance",
+      "prompt": "Объясни «Grafana» в теме «Ошибки, traces, metrics и dashboards». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "render-strategies-main",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Сравни CSR, SSR, SSG и ISR для личного кабинета, статьи и каталога. Что значит hybrid?"
+    },
+    {
+      "id": "render-strategies-item-1",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Объясни «CSR» в теме «CSR, SSR, SSG, ISR и hybrid». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "render-strategies-item-2",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Объясни «SSR» в теме «CSR, SSR, SSG, ISR и hybrid». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "render-strategies-item-3",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Объясни «SSG» в теме «CSR, SSR, SSG, ISR и hybrid». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "render-strategies-item-4",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Объясни «ISR» в теме «CSR, SSR, SSG, ISR и hybrid». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "render-strategies-item-5",
+      "topic": "render-strategies",
+      "lesson": "rendering",
+      "prompt": "Объясни «Hybrid / dynamic» в теме «CSR, SSR, SSG, ISR и hybrid». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "hydration-main",
+      "topic": "hydration",
+      "lesson": "rendering",
+      "prompt": "Объясни hydration и причины mismatch. Чем universal app отличается от доступа к window в любом компоненте?"
+    },
+    {
+      "id": "seo-main",
+      "topic": "seo",
+      "lesson": "rendering",
+      "prompt": "Публичный каталог плохо индексируется. Какие проверки проведёшь до смены rendering strategy?"
+    },
+    {
+      "id": "specificity-main",
+      "topic": "specificity",
+      "lesson": "html-css",
+      "prompt": "Сравни #app .item, .panel .item:hover и :where(#app) .item. Почему важен не только подсчёт селекторов?"
+    },
+    {
+      "id": "styling-main",
+      "topic": "styling",
+      "lesson": "html-css",
+      "prompt": "Сравни CSS Modules, CSS-in-JS и обычный CSS для большого SSR-приложения."
+    },
+    {
+      "id": "scripts-main",
+      "topic": "scripts",
+      "lesson": "html-css",
+      "prompt": "Выбери атрибуты для независимой аналитики и двух зависимых скриптов; объясни порядок исполнения."
+    },
+    {
+      "id": "scripts-item-1",
+      "topic": "scripts",
+      "lesson": "html-css",
+      "prompt": "Объясни «Classic без атрибутов» в теме «Загрузка скриптов: classic, async, defer, module». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "scripts-item-2",
+      "topic": "scripts",
+      "lesson": "html-css",
+      "prompt": "Объясни «async» в теме «Загрузка скриптов: classic, async, defer, module». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "scripts-item-3",
+      "topic": "scripts",
+      "lesson": "html-css",
+      "prompt": "Объясни «defer» в теме «Загрузка скриптов: classic, async, defer, module». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "scripts-item-4",
+      "topic": "scripts",
+      "lesson": "html-css",
+      "prompt": "Объясни «type=module» в теме «Загрузка скриптов: classic, async, defer, module». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "images-main",
+      "topic": "images",
+      "lesson": "html-css",
+      "prompt": "Главное фото долго появляется, а карточки прыгают. Предложи изменения для LCP и CLS."
+    },
+    {
+      "id": "svg-main",
+      "topic": "svg",
+      "lesson": "html-css",
+      "prompt": "Выбери SVG или raster для логотипа, фото и сложной карты. Объясни ограничения."
+    },
+    {
+      "id": "internationalization-main",
+      "topic": "internationalization",
+      "lesson": "html-css",
+      "prompt": "Сравни i18n и l10n на примере даты, цены и сообщения о количестве товаров."
+    },
+    {
+      "id": "solid-main",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Назови все пять букв SOLID, расшифруй и объясни каждую с примером frontend."
+    },
+    {
+      "id": "solid-item-1",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Объясни «S — Single Responsibility» в теме «SOLID: все пять принципов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "solid-item-2",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Объясни «O — Open/Closed» в теме «SOLID: все пять принципов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "solid-item-3",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Объясни «L — Liskov Substitution» в теме «SOLID: все пять принципов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "solid-item-4",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Объясни «I — Interface Segregation» в теме «SOLID: все пять принципов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "solid-item-5",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Объясни «D — Dependency Inversion» в теме «SOLID: все пять принципов». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "kiss-dry-yagni-main",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Сравни KISS, DRY и YAGNI. Когда обобщение двух похожих компонентов создаёт лишнюю сложность?"
+    },
+    {
+      "id": "kiss-dry-yagni-item-1",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Объясни «KISS — Keep It Simple» в теме «KISS, DRY и YAGNI». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "kiss-dry-yagni-item-2",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Объясни «DRY — Don’t Repeat Yourself» в теме «KISS, DRY и YAGNI». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "kiss-dry-yagni-item-3",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Объясни «YAGNI — You Aren’t Gonna Need It» в теме «KISS, DRY и YAGNI». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-main",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Назови паттерны учебного набора, задачу каждого и пример из frontend."
+    },
+    {
+      "id": "design-patterns-item-1",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Observer» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-item-2",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Strategy» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-item-3",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Adapter» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-item-4",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Factory» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-item-5",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Command» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "design-patterns-item-6",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Объясни «Composition / compound components» в теме «Паттерны: учебный набор». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "architecture-boundaries-main",
+      "topic": "architecture-boundaries",
+      "lesson": "architecture",
+      "prompt": "Спроектируй frontend поиска: уточни требования, назови модули и API, затем объясни компромиссы."
+    },
+    {
+      "id": "module-federation-main",
+      "topic": "module-federation",
+      "lesson": "architecture",
+      "prompt": "Объясни Module Federation и поведение приложения, если remote недоступен или принёс другую копию React."
+    },
+    {
+      "id": "http-versions-main",
+      "topic": "http-versions",
+      "lesson": "http",
+      "prompt": "Сравни все три версии HTTP: transport, multiplexing, headers и head-of-line blocking."
+    },
+    {
+      "id": "http-versions-item-1",
+      "topic": "http-versions",
+      "lesson": "http",
+      "prompt": "Объясни «HTTP/1.1» в теме «HTTP/1.1, HTTP/2 и HTTP/3». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "http-versions-item-2",
+      "topic": "http-versions",
+      "lesson": "http",
+      "prompt": "Объясни «HTTP/2» в теме «HTTP/1.1, HTTP/2 и HTTP/3». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "http-versions-item-3",
+      "topic": "http-versions",
+      "lesson": "http",
+      "prompt": "Объясни «HTTP/3» в теме «HTTP/1.1, HTTP/2 и HTTP/3». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "architecture-methods-main",
+      "topic": "architecture-methods",
+      "lesson": "architecture",
+      "prompt": "Сравни Atomic Design, FSD и группировку по типам файлов. Для чего подходит каждый подход?"
+    },
+    {
+      "id": "architecture-methods-item-1",
+      "topic": "architecture-methods",
+      "lesson": "architecture",
+      "prompt": "Объясни «Модульность» в теме «Модульность, Atomic Design и FSD». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "architecture-methods-item-2",
+      "topic": "architecture-methods",
+      "lesson": "architecture",
+      "prompt": "Объясни «Atomic Design» в теме «Модульность, Atomic Design и FSD». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "architecture-methods-item-3",
+      "topic": "architecture-methods",
+      "lesson": "architecture",
+      "prompt": "Объясни «Feature-Sliced Design» в теме «Модульность, Atomic Design и FSD». Приведи пример и назови важное ограничение."
+    },
+    {
+      "id": "experience-story-main",
+      "topic": "experience-story",
+      "lesson": "react-app",
+      "prompt": "Расскажи о реальном решении технической проблемы: контекст, альтернативы, твои действия, проверка и вывод."
+    },
+    {
+      "id": "chat-1-1",
+      "topic": "promise-combinators",
+      "lesson": "async",
+      "prompt": "Какие есть методы Promise: all, any, allSettled, race? Чем они отличаются?"
+    },
+    {
+      "id": "chat-1-2",
+      "topic": "workers",
+      "lesson": "communication",
+      "prompt": "Что такое Web Workers и Service Workers? Для чего они нужны?"
+    },
+    {
+      "id": "chat-1-3",
+      "topic": "broadcast",
+      "lesson": "communication",
+      "prompt": "Что такое BroadcastChannel и как его использовать?"
+    },
+    {
+      "id": "chat-1-4",
+      "topic": "cross-context",
+      "lesson": "communication",
+      "prompt": "Как синхронизировать данные между несколькими вкладками или iframe?"
+    },
+    {
+      "id": "chat-1-5",
+      "topic": "dedup",
+      "lesson": "communication",
+      "prompt": "Как дедуплицировать события между вкладками, например при получении уведомления?"
+    },
+    {
+      "id": "chat-1-6",
+      "topic": "map-set",
+      "lesson": "javascript",
+      "prompt": "Чем отличаются Map и Set? Объясни, как получить элемент Set по позиции и какие ограничения у этого подхода."
+    },
+    {
+      "id": "chat-1-7",
+      "topic": "weak",
+      "lesson": "javascript",
+      "prompt": "Для чего нужны WeakMap и WeakSet? Как они связаны со сборкой мусора?"
+    },
+    {
+      "id": "chat-1-8",
+      "topic": "gc",
+      "lesson": "javascript",
+      "prompt": "Как работает сборщик мусора в JavaScript?"
+    },
+    {
+      "id": "chat-1-9",
+      "topic": "proxy",
+      "lesson": "javascript",
+      "prompt": "Что такое Proxy? Как работает проксирование объектов?"
+    },
+    {
+      "id": "chat-2-1",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "С какими версиями React ты работала?"
+    },
+    {
+      "id": "chat-2-2",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Расскажи об опыте перехода между версиями React; если его не было, объясни план такой миграции."
+    },
+    {
+      "id": "chat-2-3",
+      "topic": "react-versions",
+      "lesson": "react-app",
+      "prompt": "Какие новые возможности React знаешь?"
+    },
+    {
+      "id": "chat-2-4",
+      "topic": "hooks-list",
+      "lesson": "react-effects",
+      "prompt": "Какие хуки знаешь и для чего они нужны?"
+    },
+    {
+      "id": "chat-2-5",
+      "topic": "context",
+      "lesson": "react-state",
+      "prompt": "Как работают контексты? Когда стоит разделять данные на несколько контекстов?"
+    },
+    {
+      "id": "chat-2-6",
+      "topic": "effects-purpose",
+      "lesson": "react-effects",
+      "prompt": "Для чего использовать useEffect, кроме выполнения запросов?"
+    },
+    {
+      "id": "chat-2-7",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Как работает массив зависимостей у useEffect и useLayoutEffect?"
+    },
+    {
+      "id": "chat-2-8",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Что произойдёт, если не указать массив зависимостей?"
+    },
+    {
+      "id": "chat-2-9",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Что означает пустой массив зависимостей?"
+    },
+    {
+      "id": "chat-2-10",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Как React сравнивает зависимости?"
+    },
+    {
+      "id": "chat-2-11",
+      "topic": "effect-deps",
+      "lesson": "react-effects",
+      "prompt": "Объясни поведение useLayoutEffect с [obj], если изменить obj.name, сохранив ссылку. Что меняется при отсутствии нового render?"
+    },
+    {
+      "id": "chat-2-12",
+      "topic": "react-performance",
+      "lesson": "performance",
+      "prompt": "Какие способы оптимизации React-приложений знаешь?"
+    },
+    {
+      "id": "chat-2-13",
+      "topic": "react-performance",
+      "lesson": "performance",
+      "prompt": "Как выявлять проблемы производительности?"
+    },
+    {
+      "id": "chat-2-14",
+      "topic": "state-design",
+      "lesson": "react-state",
+      "prompt": "Как организация состояния влияет на производительность?"
+    },
+    {
+      "id": "chat-3-1",
+      "topic": "never",
+      "lesson": "typescript",
+      "prompt": "Для чего нужен тип never?"
+    },
+    {
+      "id": "chat-3-2",
+      "topic": "assertions",
+      "lesson": "typescript",
+      "prompt": "Какие подводные камни есть у приведения типов — cast / type assertion?"
+    },
+    {
+      "id": "chat-3-3",
+      "topic": "utilities",
+      "lesson": "typescript",
+      "prompt": "Какие Utility Types знаешь и для чего они нужны?"
+    },
+    {
+      "id": "chat-3-4",
+      "topic": "omit-exclude",
+      "lesson": "typescript",
+      "prompt": "Чем отличаются Omit и Exclude?"
+    },
+    {
+      "id": "chat-3-5",
+      "topic": "omit-exclude",
+      "lesson": "typescript",
+      "prompt": "Как Exclude работает с union-типами?"
+    },
+    {
+      "id": "chat-3-6",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Что такое Type Guard?"
+    },
+    {
+      "id": "chat-3-7",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Какие бывают способы сужения типов?"
+    },
+    {
+      "id": "chat-3-8",
+      "topic": "narrowing",
+      "lesson": "typescript",
+      "prompt": "Какие встроенные проверки TypeScript использует для сужения типов?"
+    },
+    {
+      "id": "chat-3-9",
+      "topic": "assertions",
+      "lesson": "typescript",
+      "prompt": "Для чего нужен satisfies и чем он отличается от : Type и as Type?"
+    },
+    {
+      "id": "chat-4-1",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Какие принципы разработки знаешь?"
+    },
+    {
+      "id": "chat-4-2",
+      "topic": "solid",
+      "lesson": "architecture",
+      "prompt": "Что означает каждая буква в SOLID?"
+    },
+    {
+      "id": "chat-4-3",
+      "topic": "kiss-dry-yagni",
+      "lesson": "architecture",
+      "prompt": "Что означают KISS и DRY?"
+    },
+    {
+      "id": "chat-4-4",
+      "topic": "design-patterns",
+      "lesson": "architecture",
+      "prompt": "Какие паттерны проектирования знаешь? Где их применяла?"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# Обновление по Gen notes — 13 ноября 2026
+
+Исходник: [Gen notes](https://app.notion.com/p/41695f65d6128078b4e2cbac0cfe235e), прочитаны все 15 вложенных страниц. Материал дополнен официальными источниками, ссылки указаны в разделах. Примеры обработки ZIP, изображений и общей SSE-связи обезличены и обозначены как возможные применения.
+
+| Заметка | Изменение и раздел | Проверка готовности |
+| --- | --- | --- |
+| [Workers](https://app.notion.com/p/41695f65d612818cafa0df3d9e08cbeb) | Урок 4: Dedicated, Shared, Service; код и примеры | Все три типа проверяются целиком и отдельно |
+| [Альтернативы](https://app.notion.com/p/41695f65d61281a987dfd985af56bfb2) | Новый worker-alternatives: вычисления, React, связь вкладок и фон | Шесть изучаемых вариантов с отдельными вопросами |
+| [postMessage](https://app.notion.com/p/41695f65d612819a8bbef889facc7998) | Новый postmessage-safety: origin/source/data и разрешённые действия | Код проверок и задача с двумя iframe одного origin |
+| [storage event](https://app.notion.com/p/41695f65d6128142881aefe9693bbc93) | Новый storage-events: документы, вкладки, iframe, local/session | Писатель, получатели, стартовое чтение и повторная запись |
+| [Same-origin iframe](https://app.notion.com/p/41695f65d612814281cdf829f012768b) | Новый iframe-uses: legacy, печать, sandbox | Различены изоляция CSS и граница доверия |
+| [Web Locks](https://app.notion.com/p/41695f65d6128111be5ccce18c8b9076) | Новый web-locks: callback, очередь, режимы, отмена, лидер | Уточнение про signal у уже выданного lock, cleanup и replay |
+| [Дедупликация](https://app.notion.com/p/41695f65d612815ab79eda62b995fa71) | Расширен dedup: Web Locks + история, IDB add, TTL и сбои | Падение до/после показа, повтор после смены лидера и TTL |
+| [Notifications](https://app.notion.com/p/41695f65d6128172b893dfc8da3600fa) | Новый web-notifications: toast/Notifications/Push | Разрешения, showNotification, клик, ограничения tag |
+| [Вопросы рядом с документацией](https://app.notion.com/p/41795f65d61281ef9f0ffaef9e336e36) | Ситуационные вопросы и конкретные уточнения по всему курсу | Есть ответы про изменившиеся условия и ограничения |
+| [Образцы с кодом](https://app.notion.com/p/41795f65d6128129b451dbdd6e40e2b9) | Структурированные блоки у всех 338 вопросов | Объяснение, шаги и подходящий пример; код не исполняется |
+| [Ответы на уточнения](https://app.notion.com/p/41795f65d61281e49fb5ce3f58fdce68) | Все уточнения имеют собственный ответ | Отдельные details закрыты по умолчанию, работают с клавиатуры |
+| [Убрать самопроверку](https://app.notion.com/p/41795f65d612813aa1dcdf32250f3b05) | Удалены поля checklist и блок интерфейса | Остались три кнопки самооценки, формат progress не изменён |
+| [Слишком краткий итог](https://app.notion.com/p/41795f65d612811e998dd6da75dcf53e) | Переписан выбор CSR/SSR/SSG/ISR; образцы структурированы | Названы решения для кабинета, статьи и каталога и причины выбора |
+| [Хороший пример](https://app.notion.com/p/41795f65d61281dcb8a3eb14ba4aaa39) | Сохранены context → code → walkthrough | Пример с копированием остался, формат используется в новых разделах |
+| [Хороший краткий ответ](https://app.notion.com/p/41795f65d61281dba37ffd73dc6713f1) | Копирование — редакционный ориентир; итоги проверены во всех 83 разделах | Итог содержит понятный механизм или выбор, не только перечень факторов |
+
+## Проверенные уточнения к заметкам
+
+- Service Worker событийный и может завершаться; он не постоянный in-memory daemon. Источник: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+- Совпадение origin для BroadcastChannel не отменяет storage partitioning. Источник: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
+- Signal в request отменяет ожидание; уже запущенный callback завершает работу отдельно. Успех IndexedDB request не равен commit всей транзакции. Источники: [LockManager.request](https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request), [IDBObjectStore.add](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/add).
+- Единственный лидер и notification tag не гарантируют exactly-once. Дедупликация описывает окно хранения ID и выбор между риском пропуска и повтора, а не обещает невозможную общую транзакцию UI и storage.
+- Same-origin iframe сам не делает недоверенный JavaScript безопасным; sandbox и origin рассматриваются отдельно. Источник: [MDN iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe).
+- Не зафиксированы старые списки поддержки SharedWorker. В разделе есть ссылка на текущую compatibility table; проверяется наличие API и конкретные целевые платформы.
+
+## Совместимость
+
+Все прежние 294 question ID, 77 topic ID, lesson ID, смыслы исходных вопросов и ключ `interview-study-v1` сохранены. Новые 44 вопроса и 6 разделов имеют дополнительные ID. `answerBlocks` и объекты `followups` — учебные данные, они не входят в пользовательский экспорт. Прежний JSON импортируется без миграции. Покрытие: 15 уроков, 83 раздела, 338 вопросов, 197 записей реестра.
+
+Проверки: `python check.py`, `python check_search.py`, `python check_revision.py`, `python check_sources.py`, `node --check app.js`. Проверка доступности URL не доказывает правильность содержания; технические уточнения отдельно сверены с официальными страницами. Notion-ссылки могут требовать авторизации.

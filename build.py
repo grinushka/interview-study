@@ -1,7 +1,8 @@
 """Build the offline course. No third-party dependencies; only this folder is written."""
 from pathlib import Path
 import json, html, re
-from explanations import EXPLANATIONS
+from explanations import EXPLANATIONS, ex
+from revision_content import additions, revise_theory, revise_questions
 
 ROOT = Path(__file__).resolve().parent
 NOTION = 'https://app.notion.com/p/questions-37395f65d61280cf83b9ec0b1f33492d'
@@ -590,7 +591,9 @@ S['atomic']=('Brad Frost: Atomic Design','https://atomicdesign.bradfrost.com/cha
 S['httpversions']=('MDN: evolution of HTTP','https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP')
 S['pagination']=('Slack Engineering: API pagination','https://slack.engineering/evolving-api-pagination-at-slack/')
 S['vite']=('Vite: features','https://vite.dev/guide/features')
+additions(t, ex, S)
 byid={x['id']:x for x in topics}
+revise_theory(byid, EXPLANATIONS)
 byid['pagination']['sources']=['pagination']
 byid['build-tools']['sources']+=['vite']
 byid['react-versions']['items'][2:2]=[
@@ -660,21 +663,16 @@ CHAT = {
  ('kiss-dry-yagni','Что означают KISS и DRY?'),('design-patterns','Какие паттерны проектирования знаешь? Где их применяла?')]
 }
 
-def answer_for(topic):
-    if topic['kind']=='experience':
-        return 'Здесь нет универсального биографического ответа. Назови только свой реальный опыт. Если такого опыта не было — скажи об этом и объясни подход. '+ ' '.join(i['name']+': '+i['detail'] for i in topic['items'])
-    return topic.get('orderAnswer') or (topic['summary']+'\n\n'+'\n\n'.join(i['name']+': '+i['detail'] for i in topic['items'])+ ('\n\n'+topic['answerExtra'] if topic.get('answerExtra') else ''))
-
 questions=[]
 for topic in topics:
-    q=dict(id=topic['id']+'-main',topic=topic['id'],lesson=topic['lesson'],kind=topic['kind'],prompt=topic['question'],answer=answer_for(topic),check=[i['name'] for i in topic['items']],followups=[f'Приведи пример: {topic["items"][0]["name"]}.',f'Какие ограничения важно помнить: {topic["title"]}?'])
+    q=dict(id=topic['id']+'-main',topic=topic['id'],lesson=topic['lesson'],kind=topic['kind'],prompt=topic['question'],answer='',followups=[])
     if topic.get('order'): q['order']=topic['order']
     if topic['kind']=='match': q['pairs']=topic['items']
     if topic.get('code'): q['code']=topic['code']
     questions.append(q)
     if topic['drill']:
         for n,item in enumerate(topic['items']):
-            questions.append(dict(id=f'{topic["id"]}-item-{n+1}',topic=topic['id'],lesson=topic['lesson'],kind='recall',prompt=f'Объясни «{item["name"]}» в теме «{topic["title"]}». Приведи пример и назови важное ограничение.',answer=item['detail'],check=[item['name'],item['detail']],followups=[f'Чем этот пункт отличается от других в теме «{topic["title"]}»?']))
+            questions.append(dict(id=f'{topic["id"]}-item-{n+1}',topic=topic['id'],lesson=topic['lesson'],kind='recall',prompt=f'Объясни «{item["name"]}» в теме «{topic["title"]}». Приведи пример и назови важное ограничение.',answer='',followups=[]))
 
 registry=[]
 for group,entries in CHAT.items():
@@ -685,7 +683,7 @@ for group,entries in CHAT.items():
         if ui.startswith('Был ли опыт'): ui='Расскажи об опыте перехода между версиями React; если его не было, объясни план такой миграции.'
         if ui.startswith('Сработает ли'): ui='Объясни поведение useLayoutEffect с [obj], если изменить obj.name, сохранив ссылку. Что меняется при отсутствии нового render?'
         kind='experience' if ('работала' in ui or 'опыте перехода' in ui or 'Где их применяла' in ui) else 'recall'
-        questions.append(dict(id=qid,topic=tid,lesson=topic['lesson'],kind=kind,prompt=ui,answer=answer_for(topic),check=[i['name'] for i in topic['items']],followups=[f'Объясни конкретный пример из темы «{topic["title"]}».', 'Какое ограничение или компромисс здесь важно учитывать?']))
+        questions.append(dict(id=qid,topic=tid,lesson=topic['lesson'],kind=kind,prompt=ui,answer='',followups=[]))
         registry.append(dict(origin='Чат · '+group,title=prompt,topic=tid,lesson=topic['lesson'],question=qid,status='included'))
 
 # Each main source heading maps to a concrete topic; subheadings inherit its section.
@@ -758,12 +756,6 @@ for label in ['Личные TODO и вакансии','Реляционные Б
 # Fill two small source labels rather than merely claiming coverage.
 byid['hoc-router']['items'].append(dict(name='Шаблоны и компоненты',detail='Handlebars подставляет данные в текстовый HTML-шаблон. React-компонент объединяет описание UI с композиционной моделью, state и обновлениями; оба подхода могут генерировать HTML на сервере.'))
 byid['react-performance']['items'].append(dict(name='Ad hoc проверка',detail='Свободное исследование поведения без фиксированного тест-кейса полезно для поиска неожиданностей, но не заменяет воспроизводимый benchmark или regression test.'))
-# Regenerate the main answers affected by these additions.
-for topic in [byid['hoc-router'],byid['react-performance']]:
-    for q in questions:
-        if q['topic']==topic['id'] and '-item-' not in q['id']:
-            q['answer']=answer_for(topic);q['check']=[i['name'] for i in topic['items']]
-
 for q in questions:
     q['sources']=byid[q['topic']]['sources']
     q['notion']=byid[q['topic']]['notion'] or any(r.get('topic')==q['topic'] and r['origin']=='Notion' for r in registry)
@@ -825,23 +817,29 @@ FOLLOWUPS={
  'design-patterns':['Какой паттерн ты действительно применяла и для какой задачи?','Какова цена этого решения и что было бы проще без него?'],
  'module-federation':['Что делать с несовместимой общей зависимостью?','Как сохранить остальное приложение при отказе remote?']
 }
-for q in questions:
-    if q['topic'] in FOLLOWUPS:q['followups']=FOLLOWUPS[q['topic']]
-    if q['kind']=='experience' and byid[q['topic']]['kind']!='experience':
-        q['answer']='Опирайся только на свой опыт: контекст → задача → альтернативы → твои действия → проверка → результат. Если такого опыта не было, скажи об этом и объясни подход.\n\nТеоретические ориентиры:\n'+q['answer']
 
 assert set(EXPLANATIONS)==set(byid), 'Every topic needs its own complete explanation'
 for topic in topics:
     topic['explanation']=EXPLANATIONS[topic['id']]
-data=dict(version=1,title='Практика собеседований',date='2026-11-11',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
+revise_questions(questions, byid, EXPLANATIONS, FOLLOWUPS, registry, S)
+data=dict(version=1,title='Практика собеседований',date='2026-11-13',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
 
 def esc(v): return html.escape(str(v),quote=True)
+def static_answer_blocks(blocks):
+    result=''
+    for b in blocks:
+        result+='<div class="answer-block"><h4>'+esc(b.get('title',''))+'</h4><p>'+esc(b.get('text',''))+'</p>'
+        if b.get('code'):result+='<pre><code>'+esc(b['code'])+'</code></pre>'
+        if b.get('items'):result+='<ol>'+''.join('<li>'+esc(i)+'</li>' for i in b['items'])+'</ol>'
+        result+='</div>'
+    return result
+
 def static_topic(x):
     src=' · '.join(f'<a href="{esc(S[k][1])}">{esc(S[k][0])}</a>' for k in x['sources'])
     z=x['explanation']
     code=z['code'] or x['code']
     walkthrough='<ol>'+''.join(f'<li>{esc(line)}</li>' for line in z['walkthrough'])+'</ol>' if z['walkthrough'] else ''
-    sample=f'<div class="worked-example" id="example-{x["id"]}"><h3>Разберём на примере</h3><p>{esc(z["example"])}</p>'+(f'<pre><code>{esc(code)}</code></pre>' if code else '')+walkthrough+'</div>'
+    sample=f'<div class="worked-example" id="example-{x["id"]}"><h3>Разберём на примере</h3><p>{esc(z["example"])}</p>'+(f'<pre><code>{esc(code)}</code></pre>' if code else '')+walkthrough+static_answer_blocks(z.get('examples',[]))+'</div>'
     terms='<details class="topic-reference"'+(' open' if x['drill'] else '')+'><summary>Термины и элементы темы</summary><dl>'+''.join(f'<dt>{esc(i["name"])}</dt><dd>{esc(i["detail"])}</dd>' for i in x['items'])+'</dl></details>'
     return f'<section class="theory" id="{x["id"]}"><h2>{esc(x["title"])}</h2><p class="explanation-context">{esc(z["context"])}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">'+''.join(f'<li>{esc(step)}</li>' for step in z['steps'])+f'</ol>{sample}{terms}<div class="interview-takeaway"><h3>Коротко для собеседования</h3><p>{esc(z["takeaway"])}</p></div><p>{esc(x["note"])}</p><p class="sources">{src}</p></section>'
 

@@ -1388,5 +1388,188 @@
     "title": "Codegen / Orval, CASL как отдельная библиотека, nuqs / qs, Nivo / amCharts, CodeGraph, npm-пакеты, ERD / UML / Excalidraw",
     "status": "excluded",
     "reason": "Исключённый раздел / вне согласованного набора уроков"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Workers: типы и примеры",
+    "topic": "workers",
+    "lesson": "communication",
+    "question": "workers-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d612818cafa0df3d9e08cbeb"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Альтернативы Workers",
+    "topic": "worker-alternatives",
+    "lesson": "communication",
+    "question": "worker-alternatives-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d61281a987dfd985af56bfb2"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Проверки postMessage",
+    "topic": "postmessage-safety",
+    "lesson": "communication",
+    "question": "postmessage-safety-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d612819a8bbef889facc7998"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Получатели storage event",
+    "topic": "storage-events",
+    "lesson": "communication",
+    "question": "storage-events-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d6128142881aefe9693bbc93"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Same-origin iframe",
+    "topic": "iframe-uses",
+    "lesson": "communication",
+    "question": "iframe-uses-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d612814281cdf829f012768b"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Web Locks",
+    "topic": "web-locks",
+    "lesson": "communication",
+    "question": "web-locks-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d6128111be5ccce18c8b9076"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Дедупликация: детали и сбои",
+    "topic": "dedup",
+    "lesson": "communication",
+    "question": "dedup-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d612815ab79eda62b995fa71"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Notifications API",
+    "topic": "web-notifications",
+    "lesson": "communication",
+    "question": "web-notifications-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41695f65d6128172b893dfc8da3600fa"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Вопросы на следствия",
+    "topic": "postmessage-safety",
+    "lesson": "communication",
+    "question": "postmessage-safety-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d61281ef9f0ffaef9e336e36"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Структура и код в образцах",
+    "topic": "dedup",
+    "lesson": "communication",
+    "question": "dedup-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d6128129b451dbdd6e40e2b9"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Скрытые ответы на уточнения",
+    "topic": "realtime",
+    "lesson": "communication",
+    "question": "realtime-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d61281e49fb5ce3f58fdce68"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Удалить самопроверку",
+    "topic": "realtime",
+    "lesson": "communication",
+    "question": "realtime-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d612813aa1dcdf32250f3b05"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Расширить короткие ответы",
+    "topic": "render-strategies",
+    "lesson": "rendering",
+    "question": "render-strategies-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d612811e998dd6da75dcf53e"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Сохранить пошаговые примеры",
+    "topic": "cloning",
+    "lesson": "javascript",
+    "question": "cloning-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d61281dcb8a3eb14ba4aaa39"
+  },
+  {
+    "origin": "Notion · Gen notes",
+    "title": "Образец короткого ответа",
+    "topic": "cloning",
+    "lesson": "javascript",
+    "question": "cloning-main",
+    "status": "included",
+    "url": "https://app.notion.com/p/41795f65d61281dba37ffd73dc6713f1"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "Альтернативы Workers: какую задачу решаем",
+    "topic": "worker-alternatives",
+    "lesson": "communication",
+    "question": "worker-alternatives-main",
+    "status": "included"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "Web Locks: критическая секция и вкладка-лидер",
+    "topic": "web-locks",
+    "lesson": "communication",
+    "question": "web-locks-main",
+    "status": "included"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "postMessage: доверие к отправителю и данным",
+    "topic": "postmessage-safety",
+    "lesson": "communication",
+    "question": "postmessage-safety-main",
+    "status": "included"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "storage event: кому приходит изменение",
+    "topic": "storage-events",
+    "lesson": "communication",
+    "question": "storage-events-main",
+    "status": "included"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "Same-origin iframe: зачем и где граница изоляции",
+    "topic": "iframe-uses",
+    "lesson": "communication",
+    "question": "iframe-uses-main",
+    "status": "included"
+  },
+  {
+    "origin": "Дополнение · Gen notes",
+    "title": "Notifications и Push: показ и доставка",
+    "topic": "web-notifications",
+    "lesson": "communication",
+    "question": "web-notifications-main",
+    "status": "included"
   }
 ]
