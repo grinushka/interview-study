@@ -827,7 +827,7 @@ for topic in topics:
 revise_questions(questions, byid, EXPLANATIONS, FOLLOWUPS, registry, S)
 add_timer_questions(questions, byid, registry)
 add_tasks(questions, byid, registry)
-data=dict(version=1,title='Практика собеседований',date='2026-11-13',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
+data=dict(version=1,title='PrepFront',date='2026-11-13',notion=NOTION,sources={k:dict(title=v[0],url=v[1]) for k,v in S.items()},lessons=[dict(id=id,number=n,title=title,subtitle=sub,topics=[x['id'] for x in topics if x['lesson']==id]) for n,(id,title,sub) in enumerate(LESSONS,1)],topics=topics,questions=questions,coverage=registry)
 
 def esc(v): return html.escape(str(v),quote=True)
 def static_answer_blocks(blocks):
@@ -846,24 +846,24 @@ def static_topic(x):
     walkthrough='<ol>'+''.join(f'<li>{esc(line)}</li>' for line in z['walkthrough'])+'</ol>' if z['walkthrough'] else ''
     sample=f'<div class="worked-example" id="example-{x["id"]}"><h3>Разберём на примере</h3><p>{esc(z["example"])}</p>'+(f'<pre><code>{esc(code)}</code></pre>' if code else '')+walkthrough+static_answer_blocks(z.get('examples',[]))+'</div>'
     terms='<details class="topic-reference"'+(' open' if x['drill'] else '')+'><summary>Термины и элементы темы</summary><dl>'+''.join(f'<dt>{esc(i["name"])}</dt><dd>{esc(i["detail"])}</dd>' for i in x['items'])+'</dl></details>'
-    return f'<section class="theory" id="{x["id"]}"><h2>{esc(x["title"])}</h2><p class="explanation-context">{esc(z["context"])}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">'+''.join(f'<li>{esc(step)}</li>' for step in z['steps'])+f'</ol>{sample}{terms}<div class="interview-takeaway"><h3>Коротко для собеседования</h3><p>{esc(z["takeaway"])}</p></div><p>{esc(x["note"])}</p><p class="sources">{src}</p></section>'
+    return f'<section class="theory" id="{x["id"]}"><h2>{esc(x["title"])}</h2><p class="explanation-context">{esc(z["context"])}</p><h3>Как это работает — по шагам</h3><ol class="explanation-steps">'+''.join(f'<li>{esc(step)}</li>' for step in z['steps'])+f'</ol>{sample}{terms}<div class="interview-takeaway"><h3>Коротко по теме</h3><p>{esc(z["takeaway"])}</p></div><p>{esc(x["note"])}</p><p class="sources">{src}</p></section>'
 
 def write_page(name,title,view,content,lesson=''):
     page=f'''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(title)} · Собеседование</title><link rel="stylesheet" href="style.css"></head>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(title)} · PrepFront</title><link rel="stylesheet" href="style.css"></head>
 <body data-view="{view}" data-lesson="{lesson}"><a class="skip" href="#main">К содержимому</a><div id="storage-warning" role="status" hidden></div><div id="app"><header class="static-header"><a href="index.html">← Все уроки</a><h1>{esc(title)}</h1></header><main id="main">{content}</main></div><div id="toast" role="status" aria-live="polite"></div><script src="data.js"></script><script src="app.js"></script></body></html>'''
     (ROOT/name).write_text(page,encoding='utf-8')
 
 if __name__=='__main__':
     (ROOT/'data.js').write_text('window.STUDY_DATA = '+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8')
     (ROOT/'coverage.json').write_text(json.dumps(registry,ensure_ascii=False,indent=2),encoding='utf-8')
-    listing='<p>Объяснения по шагам, разобранные примеры, вопросы без подсказок и смешанное повторение. Включите JavaScript для упражнений и сохранения прогресса.</p><ol>'+''.join(f'<li><a href="lesson-{l["number"]:02d}.html">{esc(l["title"])}</a></li>' for l in data['lessons'])+'</ol><p><a href="tasks.html">Задачник</a> · <a href="review.html">Повторение</a> · <a href="interview.html">Мини-собеседование</a> · <a href="coverage.html">Реестр тем</a></p>'
+    listing='<p>Объяснения по шагам, разобранные примеры, вопросы без подсказок и смешанное повторение. Включите JavaScript для упражнений и сохранения прогресса.</p><ol>'+''.join(f'<li><a href="lesson-{l["number"]:02d}.html">{esc(l["title"])}</a></li>' for l in data['lessons'])+'</ol><p><a href="tasks.html">Задачник</a> · <a href="review.html">Повторение</a> · <a href="interview.html">Проверка знаний</a> · <a href="coverage.html">Реестр тем</a></p>'
     write_page('index.html','Твоя подготовка','home',listing)
     for l in data['lessons']:
         write_page(f'lesson-{l["number"]:02d}.html',l['title'],'lesson',''.join(static_topic(byid[id]) for id in l['topics']),l['id'])
     write_page('review.html','Повторение','review','<p>Повторение вопросов по теме и самооценке доступно с JavaScript.</p>')
     write_page('tasks.html','Задачник','tasks','<p>Задачи из разных уроков с фильтрами и скрытыми решениями доступны с JavaScript. <a href="index.html?view=tasks">Открыть задачник</a>.</p>')
-    write_page('interview.html','Мини-собеседование','interview','<p>Десять смешанных вопросов с уточнениями. Включите JavaScript.</p>')
+    write_page('interview.html','Проверка знаний','interview','<p>Десять смешанных вопросов с уточнениями. Включите JavaScript.</p>')
     write_page('coverage.html','Реестр тем','coverage','<p>Машиночитаемый реестр: <a href="coverage.json">coverage.json</a>.</p>')
     write_page('progress.html','Твой прогресс','progress','<p>Экспорт и импорт прогресса доступны с JavaScript.</p>')
     print(json.dumps(dict(lessons=len(LESSONS),topics=len(topics),questions=len(questions),coverage=len(registry)),ensure_ascii=False))
